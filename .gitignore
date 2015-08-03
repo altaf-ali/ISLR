@@ -1,2 +1,12 @@
-Solutions
+.Rproj.user
+_book/
+.rmdbuild
+*.DS_Store
+log/
+.Rhistory
 Solutions.formatR
+Solutions
+chapter7/figure
+*/figure
+*.html
+*/rsconnect

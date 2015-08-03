@@ -1,0 +1,246 @@
+## 3.6 Lab: Linear Regression
+
+### 3.6.1 Libraries
+
+We use [`library()`](http://bit.ly/R_library) to access functionality provided by packages not included in the standard R installation. To install a new package, use the [`install.packages()`](http://bit.ly/R_install_packages) function from the command line console.
+
+```{r eval=FALSE}
+install.packages("ISLR")
+```
+
+Start by loading that `MASS` and `ISLR` packages that we will be using throughtout this exercise
+
+```{r}
+library(MASS)
+library(ISLR)
+```
+
+### 3.6.2 Simple Linear Regression
+
+To access the `Boston` housing dataset from the `MASS` package, use the [`attach()`](http://bit.ly/R_attach) function
+
+```{r, message=FALSE, warning=FALSE}
+attach(Boston)
+```
+
+We can use [`head()`](http://bit.ly/R_head) and [`names()`](http://bit.ly/R_names) to take a look at the Boston dataset
+
+```{r}
+head(Boston)
+names(Boston)
+```
+
+Now, lets start with a simple linear model with [`lm()`](http://bit.ly/R_lm)
+
+```{r}
+lm.fit <- lm(medv ~ lstat)
+```
+
+Instead of attaching the `Boston` dataset first, we can also specify it directly in [`lm()`](http://bit.ly/R_lm).
+
+```{r}
+lm.fit <- lm(medv ~ lstat, data = Boston)
+```
+
+We can examine the fitted model, by simply typing its name.
+
+```{r}
+lm.fit
+```
+
+The [`names()`](http://bit.ly/R_names) function lists the names of all variables store in the `lm.fit` model.
+
+```{r}
+names(lm.fit)
+```
+
+We can extract the coefficients estimated by [`lm()`](http://bit.ly/R_lm) using the [`coef()`](http://bit.ly/R_coef) function, and the confidence interval with the [`confint()`](http://bit.ly/R_coef) function.
+
+```{r}
+coef(lm.fit)
+```
+
+```{r}
+confint(lm.fit)
+```
+
+We use the [`predict()`](http://bit.ly/R_predict) function to obtain prediction interval or confidence intervals for a given value of `lstat`
+
+```{r}
+predict(lm.fit, data.frame(lstat = (c(5, 10, 15))), interval = "confidence")
+```
+
+```{r}
+predict(lm.fit, data.frame(lstat = (c(5, 10, 15))), interval = "prediction")
+```
+
+We can plot the variables `lstat` and `medv` using the [`plot()`](http://bit.ly/R_plot) function, and overlay a regression line from our linear model using the [`abline()`](http://bit.ly/R_abline) function.
+
+```{r}
+plot(lstat, medv)
+abline(lm.fit)
+```
+
+Experiment with different options for [`abline()`](http://bit.ly/R_abline) by changing the line width and color.
+
+```{r}
+plot(lstat, medv)
+abline(lm.fit, lwd = 3)
+```
+
+```{r}
+plot(lstat, medv)
+abline(lm.fit, lwd = 3, col = "red")
+```
+
+```{r}
+plot(lstat, medv, col = "red")
+plot(lstat, medv, pch = 20)
+plot(lstat, medv, pch = "+")
+plot(1:20, 1:20, pch = 1:20)
+```
+
+To create a grid of multiple subplots, use the [`par()`](http://bit.ly/R_par) function.
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.fit)
+```
+
+We can extract the residuals and studentized residuals from our linear model using [`residuals()`](http://bit.ly/R_residuals) and [`rstudent()`](http://bit.ly/R_influence_measures), and plot them along with the predicted values.
+
+```{r}
+plot(predict(lm.fit), residuals(lm.fit))
+plot(predict(lm.fit), rstudent(lm.fit))
+```
+
+We can compute the influence matrix for the predictors in our fitted model using the [`hatvalues()`](http://bit.ly/R_influence_measures) function
+
+```{r}
+plot(hatvalues(lm.fit))
+which.max(hatvalues(lm.fit))
+```
+
+### 3.6.3 Multiple Linear Regression
+
+The [`lm()`](http://bit.ly/R_lm) can be used for fitting multiple regression models as well. In the following example, we include `age` in addition to `lstata` as predictors of of our response variable `medv`. 
+
+```{r}
+lm.fit <- lm(medv ~ lstat + age, data = Boston)
+summary(lm.fit)
+```
+
+In a formula, a dot `.` can be used as a shorthand to include all variables from the `Boston` dataset as predictors.
+
+```{r}
+lm.fit <- lm(medv ~ ., data = Boston)
+summary(lm.fit)
+```
+
+The Variance Inflation Factors (VIF) can be caculated using the `vif()` function from the `Companion to Applied Regression` or `car` package. You can install the `car` package using [`install.packages()`](http://bit.ly/R_install_packages) if it is not already installed.
+
+```{r eval=FALSE}
+install.packages("ISLR")
+```
+
+```{r}
+library(car)
+vif(lm.fit)
+```
+
+To exclude specific variables from the list of predictors, we can use the `-` notation. In the following example, all variables except `age` are included in the linear fit model.
+
+```{r}
+lm.fit1 <- lm(medv ~ . - age, data = Boston)
+summary(lm.fit1)
+```
+
+We can also update an existing fit with the [`update()`](http://bit.ly/R_update) function and specifiying a new formula.
+
+```{r}
+lm.fit1 <- update(lm.fit, ~. - age)
+```
+
+### 3.6.4 Interaction Terms
+
+The `:` and `*` operators are used to specify interaction terms between variables. The `:` operator includes just the interaction term between the specified variables as predictor, while the `*` operator includes the interaction term as well as the variables themselves. In the following example, `lstat * age` is equivalent to `lstat + age + lstat:age`
+
+```{r}
+summary(lm(medv ~ lstat * age, data = Boston))
+```
+
+### 3.6.5 Non-linear Transformations of the Predictors
+
+The [`lm()`](http://bit.ly/R_lm) function can also be non-linear transformations such as quadratic or cubic terms. Terms in the formula raised to a power with `^` must be wrapped inside a call to [`I()`](http://bit.ly/R_asis) to prevent interpretation and treated `as is`.
+
+```{r}
+lm.fit2 <- lm(medv ~ lstat + I(lstat^2))
+summary(lm.fit2)
+```
+
+To examine the analysis of variance (ANOVA) for one or more models, we use the [`anova()`](http://bit.ly/R_anova).
+
+```{r}
+lm.fit <- lm(medv ~ lstat)
+anova(lm.fit, lm.fit2)
+```
+
+```{r}
+par(mfrow = c(2, 2))
+plot(lm.fit2)
+```
+
+```{r}
+lm.fit5 <- lm(medv ~ poly(lstat, 5))
+summary(lm.fit5)
+```
+
+In addition to polynomial transformations, the formula in a linear fit model can also include [`anova()`](http://bit.ly/R_anova) transformations as shown in the following example.
+
+```{r}
+summary(lm(medv ~ log(rm), data = Boston))
+```
+
+### 3.6.6 Qualitative Predictors
+
+In this section, we will use the `Carseats` dataset from the `ISLR` package. Similar to how we used the `Boston` dataset, we can make the `Carseats` dataset available to us with the [`attach()`](http://bit.ly/R_attach) function.
+
+```{r, message=FALSE, warning=FALSE}
+attach(Carseats, warn.conflicts = FALSE)
+```
+
+```{r}
+head(Carseats)
+names(Carseats)
+```
+
+When dealing with qualitative or categorial variable, `R` automatically generates dummy variables for us. 
+
+```{r}
+lm.fit <- lm(Sales ~ . + Income:Advertising + Price:Age, data = Carseats)
+summary(lm.fit)
+```
+
+To examine the coding for the qualitive variables, we can use the [`contrasts()`](http://bit.ly/R_contrasts) function.
+
+```{r}
+contrasts(ShelveLoc)
+```
+
+### 3.6.7 Writing Functions
+
+We can define our own functions to wrap a set of `R` commands in a single call. In the following example, we define a `LoadLibraries` function that loads the `ISLR` and `MASS` packages.
+
+```{r}
+LoadLibraries <- function() {
+    library(ISLR)
+    library(MASS)
+}
+```
+
+The function then simply be called just like any other function supplied with `R`.
+
+```{r}
+LoadLibraries() 
+```
+

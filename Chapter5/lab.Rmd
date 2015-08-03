@@ -1,0 +1,192 @@
+## 5.3 Lab: Cross-Validation and the Bootstrap
+
+Load the [ISLR package](http://bit.ly/R_ISLR) to get started:
+
+```{r}
+library(ISLR)
+```
+
+### 5.3.1 The Validation Set Approach
+We use the [Auto](http://bit.ly/ISLR_Auto) dataset in this exercise which contains 392 observations. We can use [head()](http://bit.ly/R_head) to see what the [Auto](http://bit.ly/ISLR_Auto) dataset looks like.
+
+```{r, message=FALSE, warning=FALSE}
+attach(Auto)
+head(Auto)
+```
+
+For this exercise, we first select a random sample of 196 out of 392 observations. We initialize the random number generator with a seed using [set.seed()](http://bit.ly/R_set_seed) to ensure that repeated runs produce consistent results.
+
+```{r}
+set.seed(1)
+train <- sample(392, 196)
+```
+
+We then estimate the effects of **horsepower** on **mpg** by fitting a linear regression model with [lm()](http://bit.ly/R_lm) on the selected subset
+
+```{r}
+lm.fit <- lm(mpg ~ horsepower, data = Auto, subset = train)
+```
+
+Next, we calculate the mean squared error (MSE) for the remaining 196 observations in the validation set. The training subset is excluded from the MSE calculation using **-train** index. 
+
+```{r}
+mse <- mean((mpg - predict(lm.fit, Auto))[-train]^2)
+mse
+```
+
+The error rate for a linear model is `r mse`. We can also fit higher degree polynomials with the [poly()](http://bit.ly/R_poly) function. First, let's try a quadratic model.
+
+```{r}
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data = Auto, subset = train)
+mse2 <- mean((mpg - predict(lm.fit2, Auto))[-train]^2)
+mse2
+```
+
+Quadratic regression performs better than a linear model and reduces the error rate to `r mse2`. Let's also try a cubic model.
+
+```{r}
+lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data = Auto, subset = train)
+mse3 <- mean((mpg - predict(lm.fit3, Auto))[-train]^2)
+mse3
+```
+
+We can fit these models on a different subset of training observations by initializing the random number generator with a different seed.
+
+```{r}
+set.seed(2)
+train <- sample(392, 196)
+lm.fit <- lm(mpg ~ horsepower, subset = train)
+
+mean((mpg - predict(lm.fit, Auto))[-train]^2)
+lm.fit2 <- lm(mpg ~ poly(horsepower, 2), data = Auto, subset = train)
+mean((mpg - predict(lm.fit2, Auto))[-train]^2)
+lm.fit3 <- lm(mpg ~ poly(horsepower, 3), data = Auto, subset = train)
+mean((mpg - predict(lm.fit3, Auto))[-train]^2)
+```
+
+The error rates are slightly different from our initial training sample but the results are consistent with previous findings. A quadratic model performs better than a linear model but there is no significant improvement when we use a cubic model.
+
+## 5.3.2 Leave-One-Out Cross-Validation
+
+The [glm()](http://bit.ly/R_glm) function offers a generalization of the linear model while allowing for different link functions and error distributions other than gaussian. By default, [glm()](http://bit.ly/R_glm) simply fits a linear model identical to the one estimated with [lm()](http://bit.ly/R_lm).
+
+```{r}
+glm.fit <- glm(mpg ~ horsepower, data = Auto)
+coef(glm.fit)
+```
+
+```{r}
+lm.fit <- lm(mpg ~ horsepower, data = Auto)
+coef(lm.fit)
+```
+
+The [glm()](http://bit.ly/R_glm) function can be used with [cv.glm()](http://bit.ly/R_cv_glm) to estimate k-fold cross-validation prediction error.
+
+```{r}
+library(boot)
+glm.fit <- glm(mpg ~ horsepower, data = Auto)
+cv.err <- cv.glm(Auto, glm.fit)
+cv.err$delta
+```
+
+The returned value from [cv.glm()](http://bit.ly/R_cv_glm) contains a *delta* vector of components -- the raw cross-validation estimate and the adjusted cross-validation estimate respectively.
+
+We can repeat this process in a [for()](http://bit.ly/R_Control) loop to compare the cross-validation error of higher-order polynomials. The following example estimates the polynomial fit of the order 1 through 5 and stores the result in a *cv.error* vector.
+
+```{r}
+cv.error <- rep(0, 5)
+for (i in 1:5) {
+    glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
+    cv.error[i] <- cv.glm(Auto, glm.fit)$delta[1]
+}
+cv.error
+```
+
+## 5.3.3 k-Fold Cross-Validation
+
+In addition to LOOCV, [cv.glm()](http://bit.ly/R_cv_glm)  can also be used to run k-fold cross-validation. In the following example, we estimate the cross-validation error of polynomials of the order 1 through 10 using k-fold cross-validation.
+
+```{r}
+set.seed(17)
+cv.error.10 <- rep(0, 10)
+for (i in 1:10) {
+    glm.fit <- glm(mpg ~ poly(horsepower, i), data = Auto)
+    cv.error.10[i] <- cv.glm(Auto, glm.fit, K = 10)$delta[1]
+}
+cv.error.10
+```
+
+In both LOOCV and k-fold cross-validation, we get lower test errors with quadratic models than linear models, but cubic and higher-order polynomials don't offer any significant improvement.
+
+## 5.3.4 The Bootstrap
+
+In order to perform bootstrap analysis, we first create an *alpha.fn()* for estimating $\alpha$.
+
+```{r}
+alpha.fn <- function(data, index) {
+    X <- data$X[index]
+    Y <- data$Y[index]
+    return((var(Y) - cov(X, Y))/(var(X) + var(Y) - 2 * cov(X, Y)))
+}
+
+```
+
+The following example estimates $\alpha$ using observations 1 through 100 from the [Portfolio](http://bit.ly/ISLR_Portfolio) dataset.
+
+```{r}
+alpha.fn(Portfolio, 1:100)
+
+```
+
+The subset from our dataset can also be obtained with the [sample()](http://bit.ly/R_sample) function as previously discussed.
+
+```{r}
+set.seed(1)
+alpha.fn(Portfolio, sample(100, 100, replace = T))
+```
+
+Instead of manually repeating this procedure with different samples from our dataset, we can automate this process with the [boot()](http://bit.ly/R_boot) function as shown below.
+
+```{r}
+boot(Portfolio, alpha.fn, R = 1000)
+```
+
+We can apply the same bootstrap approach to the [Auto](http://bit.ly/ISLR_Auto) dataset by creating a bootstrap function that fits a linear model to our dataset.
+
+```{r}
+boot.fn <- function(data, index) 
+  return(coef(lm(mpg ~ horsepower, data = data, subset = index)))
+boot.fn(Auto, 1:392)
+```
+
+We can run this manually on different samples from the dataset.
+
+```{r}
+set.seed(1)
+boot.fn(Auto, sample(392, 392, replace = T))
+boot.fn(Auto, sample(392, 392, replace = T))
+```
+
+And we can also automate this by fitting the model on 1000 replicates from our dataset.
+
+```{r}
+boot(Auto, boot.fn, 1000)
+```
+
+The [summary()](http://bit.ly/R_summary) function be used to compute standard errors for the regression coefficients.
+
+```{r}
+summary(lm(mpg ~ horsepower, data = Auto))$coef
+```
+
+Finally, we redefine the bootstrap function to use a quadratic model and compare the standard errors that from bootstrap to the ones obtained from the [summary()](http://bit.ly/R_summary) function.
+
+```{r}
+boot.fn <- function(data, index) 
+  coefficients(lm(mpg ~ horsepower + I(horsepower^2), data = data, subset = index))
+
+set.seed(1)
+boot(Auto, boot.fn, 1000)
+
+summary(lm(mpg ~ horsepower + I(horsepower^2), data = Auto))$coef
+```

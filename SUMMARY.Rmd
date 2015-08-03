@@ -1,0 +1,15 @@
+* [Chapter 3. Linear Regression](chapter3/index.md)
+    * [Lab](chapter3/lab.md)
+    * [Solutions](chapter3/solutions.md)
+
+* [Chapter 4. Classification](chapter4/index.md)
+    * [Lab](chapter4/lab.md)
+    * [Solutions](chapter4/solutions.md)
+
+* [Chapter 5. Resampling Methods](chapter5/index.md)
+    * [Lab](chapter5/lab.md)
+    * [Solutions](chapter5/solutions.md)
+
+* [Chapter 7. Moving Beyond Linearity](chapter7/index.md)
+    * [Lab](chapter7/lab.md)
+    * [Solutions](chapter7/solutions.md)

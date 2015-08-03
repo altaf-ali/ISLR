@@ -1,0 +1,280 @@
+## 4.6 Lab: Logistic Regression, LDA, QDA, and KNN
+
+### 4.6.1 The Stock Market Data
+
+Start by loading that `ISLR` package and attach to the `Smarket` dataset that we will be using throughtout this exercise.
+
+```{r}
+library(ISLR)
+```
+
+```{r, message=FALSE, warning=FALSE}
+attach(Smarket)
+```
+
+```{r}
+names(Smarket)
+pairs(Smarket)
+```
+
+The [`cor()`](http://bit.ly/R_cor) function is used to show a matrix of all pairwise correlations among the predictors in the `Smarket` dataset.
+
+```{r}
+cor(Smarket[, -9])
+```
+
+Use the [`plot()`](http://bit.ly/R_plot) function to produce a scatter plot or the variable `Volume`.
+
+```{r}
+plot(Volume)
+```
+
+### 4.6.2 Logistic Regression
+
+The [`glm()`](http://bit.ly/R_glm) function can be used to fit a logistic regression model by specifying `family=binomial`. 
+
+```{r}
+glm.fit <- glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Smarket, family = binomial)
+summary(glm.fit)
+```
+
+Similar to linear models estimated with the [`lm()`](http://bit.ly/R_lm), the logistic regression model fitted with [`glm()`](http://bit.ly/R_glm) can be examined with the [`summary()`](http://bit.ly/R_summary) and [`coef()`](http://bit.ly/R_coef) 
+
+```{r}
+coef(glm.fit)
+summary(glm.fit)$coef
+summary(glm.fit)$coef[, 4]
+```
+
+The [`predict()`](http://bit.ly/R_predict) function is used similary to generate predictions for the response variable.
+
+```{r}
+glm.probs <- predict(glm.fit, type = "response")
+glm.probs[1:10]
+```
+
+Use the [`contrasts()`](http://bit.ly/R_contrasts) function to see the dummy variables generated for values in the categorical variable `Direction`.
+
+```{r}
+contrasts(Direction)
+```
+
+Next we convert the predicted probabilities to either "Up" or "Down" based on whether the probability is less than or greater than 0.5.
+
+```{r}
+glm.pred <- rep("Down", 1250)
+glm.pred[glm.probs > 0.5] <- "Up"
+```
+
+We can generate a confusion matrix between the predicted direction and the actual direction from the variable `Direction` using the [`table()`](http://bit.ly/R_table) function.
+
+```{r}
+table(glm.pred, Direction)
+mean(glm.pred == Direction)
+```
+
+We then divide our dataset into training set and validation set. The training set will include observations from 2001-2004 and the validation set from the year 2005.
+
+```{r}
+train <- (Year < 2005)
+Smarket.2005= Smarket [! train ,]
+dim(Smarket.2005)
+Direction.2005=Direction[!train]
+```
+
+We can run the loggistic regression again using  [`glm()`](http://bit.ly/R_glm) but this time restricting our training set to obervations in the subset `train`.
+
+```{r}
+glm.fit <- glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Smarket, family = binomial, subset = train)
+glm.probs <- predict(glm.fit, Smarket.2005, type = "response")
+```
+
+Next we compare the predictions for 2005 based on the model generated from our `train` subset.
+
+```{r}
+glm.pred <- rep("Down", 252)
+glm.pred[glm.probs > 0.5] <- "Up"
+table(glm.pred, Direction.2005)
+mean(glm.pred == Direction.2005)
+mean(glm.pred != Direction.2005)
+```
+
+To improve the preditive performance, we can restrict the predictor variables to only those with the strongest relationship to the response variable. In this case, we limit the variables to `Lag1` and `Lag2`.
+
+```{r}
+glm.fit <- glm(Direction ~ Lag1 + Lag2, data = Smarket, family = binomial, subset = train)
+glm.probs <- predict(glm.fit, Smarket.2005, type = "response")
+glm.pred <- rep("Down", 252)
+glm.pred[glm.probs > 0.5] <- "Up"
+table(glm.pred, Direction.2005)
+mean(glm.pred == Direction.2005)
+```
+
+```{r}
+predict(glm.fit,newdata=data.frame(Lag1=c(1.2,1.5), Lag2=c(1.1,-0.8)),type="response")
+```
+
+### 4.6.3 Linear Discriminant Analysis
+
+Let's first load the `MASS` package so we can train an LDA model with the [`lda()`](http://bit.ly/R_lda) function. 
+
+```{r}
+library(MASS)
+lda.fit <- lda(Direction ~ Lag1 + Lag2, data = Smarket, subset = train)
+plot(lda.fit)
+```
+
+The [`preditc()`](http://bit.ly/R_predict) function for an LDA model returns a list of three elements representing the predicted class, the posterior probabilities and the linear discriminants as shown below.
+
+```{r}
+lda.pred <- predict(lda.fit, Smarket.2005)
+names(lda.pred)
+```
+
+We can compare the predicted class with the predicted directed obtained from logistic regression in the previous section and stored in the vector `Direction.2005`.
+
+```{r}
+lda.class <- lda.pred$class
+table(lda.class, Direction.2005)
+mean(lda.class == Direction.2005)
+```
+
+```{r}
+sum(lda.pred$posterior[, 1] >= 0.5)
+sum(lda.pred$posterior[, 1] < 0.5)
+```
+
+We can inspect the posterior probabilities of the LDA model from the `posterior` vector of the fitted model.
+
+```{r}
+lda.pred$posterior[1:20, 1]
+lda.class[1:20]
+```
+
+We can also set the posterior probabilities to different thresholds for making predictions.
+
+```{r}
+sum(lda.pred$posterior[, 1] > 0.9)
+```
+
+### 4.6.4 Quadratic Discriminant Analysis
+
+In addition to Linear Discriminant Analysis (LDA), the MASS package also offers a Quadratic Discriminant Analysis (LDA) model that we can fit with the [`qda()`](http://bit.ly/R_qda) function.
+
+```{r}
+qda.fit <- qda(Direction ~ Lag1 + Lag2, data = Smarket, subset = train)
+qda.fit
+```
+
+We can make predictions using [`predict()`](http://bit.ly/R_predict) just as we did for an LDA model and compare them to the results from the logistic regression.
+
+```{r}
+qda.class <- predict(qda.fit, Smarket.2005)$class
+table(qda.class, Direction.2005)
+mean(qda.class == Direction.2005)
+```
+
+### 4.6.5 K-Nearest Neighbors
+
+The `class` package offers a number of classification algorithms including K-Nearest Neighbors. Before we can run the KNN algorithm, we need to split our dataset into training and test subsets. After splitting the dataset, the [`cbind()`](http://bit.ly/R_cbind) is used to bind the `Lag1` and `Lag2` variables into a matrix for each subset.
+
+```{r}
+library(class)
+train.X <- cbind(Lag1, Lag2)[train, ]
+test.X <- cbind(Lag1, Lag2)[!train, ]
+train.Direction <- Direction[train]
+```
+
+We initialize the random number generator with [set.seed()](http://bit.ly/R_set_seed) to ensure that repeated runs produce consistent results and then use [`knn()`](http://bit.ly/R_knn) to make predictions about the market direction in 2005.
+
+```{r}
+set.seed(1)
+knn.pred <- knn(train.X, test.X, train.Direction, k = 1)
+table(knn.pred, Direction.2005)
+(83 + 43)/252
+```
+
+We can repeat the fit with K = 3.
+
+```{r}
+knn.pred <- knn(train.X, test.X, train.Direction, k = 3)
+table(knn.pred, Direction.2005)
+mean(knn.pred == Direction.2005)
+```
+
+### 4.6.6 An Application to Caravan Insurance Data
+
+We first use the [`attach()`](http://bit.ly/R_attach) function to make the `Caravan` dataset available to us.
+
+```{r, message=FALSE, warning=FALSE}
+attach(Caravan)
+```
+
+Lets explore the dataset with the [`dim()`](http://bit.ly/R_dim) and [`summary()`](http://bit.ly/R_summary) functions.
+
+```{r}
+dim(Caravan)
+summary(Purchase)
+348/5822
+```
+
+We use the [`scale()`](http://bit.ly/R_scale) function to scale the dataset with a mean of zero and standard deviation of one.
+
+```{r}
+standardized.X <- scale(Caravan[, -86])
+var(Caravan[, 1])
+var(Caravan[, 2])
+var(standardized.X[, 1])
+var(standardized.X[, 2])
+```
+
+We use the producedure described in the previous section of splitting the dataset into training and test sets and making prediction about the response variable `Purchase` using a KNN model.
+
+```{r}
+test <- 1:1000
+train.X <- standardized.X[-test, ]
+test.X <- standardized.X[test, ]
+train.Y <- Purchase[-test]
+test.Y <- Purchase[test]
+set.seed(1)
+knn.pred <- knn(train.X, test.X, train.Y, k = 1)
+mean(test.Y != knn.pred)
+mean(test.Y != "No")
+```
+
+```{r}
+table(knn.pred, test.Y)
+9/(68 + 9)
+```
+
+We can repeat this process with different values of K, for example, K = 3 and K = 5.
+
+```{r}
+knn.pred <- knn(train.X, test.X, train.Y, k = 3)
+table(knn.pred, test.Y)
+5/26
+knn.pred <- knn(train.X, test.X, train.Y, k = 5)
+table(knn.pred, test.Y)
+4/15
+```
+
+Finally, we compare the KNN model with a logistic regression using  [`glm()`](http://bit.ly/R_glm) and `family = binomial`.
+
+```{r}
+glm.fit <- glm(Purchase ~ ., data = Caravan, family = binomial, subset = -test)
+glm.probs <- predict(glm.fit, Caravan[test, ], type = "response")
+glm.pred <- rep("No", 1000)
+glm.pred[glm.probs > 0.5] <- "Yes"
+table(glm.pred, test.Y)
+glm.pred <- rep("No", 1000)
+glm.pred[glm.probs > 0.25] <- " Yes"
+table(glm.pred, test.Y)
+11/(22 + 11)
+```
+
+
+
+
+
+
+ 

@@ -1,0 +1,230 @@
+## 4.7 Exercises
+
+### Exercise 10
+
+```{r}
+save_plots <- F
+
+library("ISLR")
+library("MASS")
+library("class")
+
+set.seed(0)
+
+# Part (a):
+Direction <- Weekly$Direction
+Weekly$Direction <- NULL
+Weekly$NumericDirection <- as.numeric(Direction)  # Maps Down=>1 and Up=>2
+Weekly$NumericDirection[Weekly$NumericDirection == 1] <- -1  # Maps Down=>-1 and Up=>2
+Weekly$NumericDirection[Weekly$NumericDirection == 2] <- +1  # Maps Down=>-1 and Up=>+1
+
+# Look at the correlation between the output and the input lags:
+Weekly.cor <- cor(Weekly)
+
+# b: logistic regression to predict Direction as a function of 5 lag variables + volume:
+Weekly$NumericDirection <- NULL
+Weekly$Direction <- Direction
+
+five_lag_model <- glm(Direction ~ Lag1 + Lag2 + Lag3 + Lag4 + Lag5 + Volume, data = Weekly, family = binomial)
+summary(five_lag_model)
+
+contrasts(Weekly$Direction)
+
+# c: the confusion matrix:
+p_hat <- predict(five_lag_model, newdata = Weekly, type = "response")
+y_hat <- rep("Down", length(p_hat))
+y_hat[p_hat > 0.5] <- "Up"
+CM <- table(predicted = y_hat, truth = Weekly$Direction)
+CM
+sprintf("LR (all features): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+
+# d: logistic regression using only Lag2 as the predictor (since it is the most significant predictor)
+Weekly.train <- (Weekly$Year >= 1990) & (Weekly$Year <= 2008)  # our training set 
+Weekly.test <- (Weekly$Year >= 2009)  # our testing set 
+lag2_model <- glm(Direction ~ Lag2, data = Weekly, family = binomial, subset = Weekly.train)
+
+# CM on test data :
+p_hat <- predict(lag2_model, newdata = Weekly[Weekly.test, ], type = "response")
+y_hat <- rep("Down", length(p_hat))
+y_hat[p_hat > 0.5] <- "Up"
+CM <- table(predicted = y_hat, truth = Weekly[Weekly.test, ]$Direction)
+CM
+sprintf("LR (only Lag2): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# e: Use LDA
+lda.fit <- lda(Direction ~ Lag2, data = Weekly, subset = Weekly.train)
+
+lda.predict <- predict(lda.fit, newdata = Weekly[Weekly.test, ])
+CM <- table(predicted = lda.predict$class, truth = Weekly[Weekly.test, ]$Direction)
+CM
+sprintf("LDA (only Lag2): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+
+# f: Use QDA
+qda.fit <- qda(Direction ~ Lag2, data = Weekly, subset = Weekly.train)
+
+qda.predict <- predict(qda.fit, newdata = Weekly[Weekly.test, ])
+CM <- table(predicted = qda.predict$class, truth = Weekly[Weekly.test, ]$Direction)
+CM
+sprintf("QDA (only Lag2): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# g: KNN
+X.train <- data.frame(Lag2 = Weekly[Weekly.train, ]$Lag2)
+Y.train <- Weekly[Weekly.train, ]$Direction
+
+X.test <- data.frame(Lag2 = Weekly[Weekly.test, ]$Lag2)
+
+y_hat_k_1 <- knn(X.train, X.test, Y.train, k = 1)
+
+CM <- table(predicted = y_hat_k_1, truth = Weekly[Weekly.test, ]$Direction)
+CM
+sprintf("KNN (k=1): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+y_hat_k_3 <- knn(X.train, X.test, Y.train, k = 3)
+CM <- table(predicted = y_hat_k_3, truth = Weekly[Weekly.test, ]$Direction)
+CM
+sprintf("KNN (k=1): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+```
+
+
+### Exercise 11
+
+```{r}
+attach(Auto)
+
+set.seed(0)
+
+# Part (a):
+mpg01 <- rep(0, dim(Auto)[1])  # 0 => less than the median of mpg 
+mpg01[Auto$mpg > median(Auto$mpg)] <- 1  # 1 => greater than the median of mpg 
+
+Auto$mpg01 <- mpg01
+Auto$mpg <- NULL
+
+# Part (b):
+pairs(Auto)
+
+Auto$mpg01 <- as.factor(mpg01)
+
+# Part (c):
+n <- dim(Auto)[1]
+inds.train <- sample(1:n, 3 * n/4)
+Auto.train <- Auto[inds.train, ]
+inds.test <- (1:n)[-inds.train]
+Auto.test <- Auto[inds.test, ]
+
+# Part (d) Use LDA:
+lda.fit <- lda(mpg01 ~ cylinders + displacement + weight, data = Auto.train)
+
+lda.predict <- predict(lda.fit, newdata = Auto.test)
+CM <- table(predicted = lda.predict$class, truth = Auto.test$mpg01)
+CM
+sprintf("LDA: overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# Part (e): Use QDA:
+qda.fit <- qda(mpg01 ~ cylinders + displacement + weight, data = Auto.train)
+
+qda.predict <- predict(qda.fit, newdata = Auto.test)
+CM <- table(predicted = qda.predict$class, truth = Auto.test$mpg01)
+CM
+sprintf("QDA: overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# Part (f): Use Logistic regression:
+lr.fit <- glm(mpg01 ~ cylinders + displacement + weight, data = Auto.train, family = binomial)
+
+p_hat <- predict(lr.fit, newdata = Auto.test, type = "response")
+y_hat <- rep(0, length(p_hat))
+y_hat[p_hat > 0.5] <- 1
+CM <- table(predicted = as.factor(y_hat), truth = Auto.test$mpg01)
+CM
+sprintf("LR (all features): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+```
+
+### Exercise 12
+
+```{r}
+# Part (a):
+Power <- function() {
+    print(2^3)
+}
+
+# Part (b):
+Power2 <- function(x, a) {
+    print(x^a)
+}
+```
+
+### Exercise 13
+
+```{r}
+set.seed(0)
+
+n <- dim(Boston)[1]
+
+# Introduce a variable whether or not the crime rate is above=1 / below=0 the median
+Boston$crim01 <- rep(0, n)
+Boston$crim01[Boston$crim >= median(Boston$crim)] <- 1
+Boston$crim <- NULL
+
+# Look to see what features are most strongly correlated with crim01:
+Boston.cor <- cor(Boston)
+print(sort(Boston.cor[, "crim01"]))
+
+# Split the data set into testing and training parts:
+inds.train <- sample(1:n, 3 * n/4)
+inds.test <- (1:n)[-inds.train]
+Boston.train <- Boston[inds.train, ]
+Boston.test <- Boston[inds.test, ]
+
+# Fit several models to the training data
+lr_model <- glm(crim01 ~ nox + rad + dis, data = Boston.train, family = binomial)
+
+p_hat <- predict(lr_model, newdata = Boston.test, type = "response")
+y_hat <- rep(0, length(p_hat))
+y_hat[p_hat > 0.5] <- 1
+CM <- table(predicted = y_hat, truth = Boston.test$crim01)
+CM
+sprintf("LR: overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+lda.fit <- lda(crim01 ~ nox + rad + dis, data = Boston.train)
+
+# Use LDA
+lda.fit <- lda(crim01 ~ nox + rad + dis, data = Boston.train)
+
+lda.predict <- predict(lda.fit, newdata = Boston.test)
+CM <- table(predicted = lda.predict$class, truth = Boston.test$crim01)
+CM
+sprintf("LDA: overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# f: Use QDA
+qda.fit <- qda(crim01 ~ nox + rad + dis, data = Boston.train)
+
+qda.predict <- predict(qda.fit, newdata = Boston.test)
+CM <- table(predicted = qda.predict$class, truth = Boston.test$crim01)
+CM
+sprintf("QDA: overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+# g: KNN
+X.train <- Boston.train
+X.train$crim01 <- NULL
+Y.train <- Boston.train$crim01
+
+X.test <- Boston.test
+X.test$crim01 <- NULL
+
+y_hat_k_1 <- knn(X.train, X.test, Y.train, k = 1)
+
+CM <- table(predicted = y_hat_k_1, truth = Boston.test$crim01)
+CM
+sprintf("KNN (k=1): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+
+y_hat_k_3 <- knn(X.train, X.test, Y.train, k = 3)
+CM <- table(predicted = y_hat_k_3, truth = Boston.test$crim01)
+CM
+sprintf("KNN (k=3): overall fraction correct= %10.6f", (CM[1, 1] + CM[2, 2])/sum(CM))
+```
+
+
+

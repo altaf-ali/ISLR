@@ -1,0 +1,207 @@
+## 3.7 Exercises
+
+```{r}
+library(ISLR)
+```
+
+### Exercise 8
+
+```{r}
+attach(Auto)
+
+qualitative_columns <- c(2, 8, 9)
+
+fit1 <- lm(mpg ~ horsepower, data = Auto)
+
+plot(mpg ~ horsepower, Auto)
+abline(fit1, col = "red")
+
+plot(fit1)
+```
+
+### Exercise 9
+
+```{r}
+qualitative_columns <- c(2, 8, 9)
+
+pairs(Auto)  # almost too complicated to work with
+
+fit <- lm(mpg ~ ., data = Auto)
+summary(fit)
+
+plot(fit)
+
+# Use update to add some interaction terms:
+summary(update(fit, . ~ . + horsepower:weight))
+
+# Lets see if this is indeed a better model:
+anova(fit, update(fit, . ~ . + horsepower:weight))
+
+# Use update to add some nonlinear terms: Note that other terms i.e. displacement, weight, and accelation should also have a
+# significant non-linear term:
+summary(update(fit, . ~ . + I(horsepower^2)))
+```
+
+
+### Exercise 10
+
+```{r}
+fit_1 <- lm(Sales ~ Price + Urban + US, data = Carseats)
+summary(fit_1)
+
+fit_2 <- update(fit, . ~ . - Urban)
+
+confint(fit_2, level = 0.95) 
+```
+
+### Exercise 10
+
+```{r}
+fit_1 <- lm(Sales ~ Price + Urban + US, data = Carseats)
+summary(fit_1)
+
+fit_2 <- update(fit, . ~ . - Urban)
+
+confint(fit_2, level = 0.95) 
+```
+
+### Exercise 11
+
+```{r}
+set.seed(1)
+n <- 100
+x <- rnorm(n)
+y <- 2 * x + rnorm(n)
+
+# Part (a):
+fit <- lm(y ~ x + 0)
+summary(fit)
+
+# Part (b):
+fit <- lm(x ~ y + 0)
+summary(fit)
+
+# Part (f): verify that these two regressions give the same t-statistic
+fit_x_to_y <- lm(x ~ y)
+summary(fit_x_to_y)
+fit_y_to_x <- lm(y ~ x)
+summary(fit_y_to_x)
+```
+
+### Exercise 12
+
+```{r}
+set.seed(1)
+
+# Different coefficient estimates in regressions y ~ x and x ~ y:
+x <- rnorm(100)
+y <- 2 * x + rnorm(100)
+
+coef(lm(y ~ x))
+coef(lm(x ~ y))
+
+# The same coefficient estimates in regressions y ~ x and x ~ y:
+x <- rnorm(100)
+y <- x
+
+coef(lm(y ~ x))
+coef(lm(x ~ y))
+```
+
+### Exercise 13
+
+```{r}
+set.seed(1)
+
+x <- rnorm(100)
+eps <- rnorm(100, mean = 0, sd = sqrt(0.25))
+y_pure <- -1 + 0.5 * x
+y <- y_pure + eps
+
+plot(x, y)
+
+fit <- lm(y ~ x)
+summary(fit)
+
+abline(fit)
+abline(a = -1, b = 1/2, col = "green")
+legend(-3, 1, c("estimated", "truth"), col = c("black", "green"), lty = c(1, 1))
+
+# Try to fit a quadradic model:
+qfit <- lm(y ~ x + I(x^2))
+summary(qfit)
+
+
+# Fit different amounts of noise:
+confint(fit, level = 0.95)
+
+eps_less <- rnorm(100, mean = 0, sd = sqrt(0.1))
+y <- y_pure + eps_less
+confint(lm(y ~ x), level = 0.95)
+
+eps_more <- rnorm(100, mean = 0, sd = sqrt(0.5))
+y <- y_pure + eps_more
+confint(lm(y ~ x), level = 0.95) 
+```
+
+### Exercise 14
+
+```{r}
+set.seed(1)
+
+x1 <- runif(100)
+x2 <- 0.5 * x1 + rnorm(100)/10
+y <- 2 + 2 * x1 + 0.3 * x2 + rnorm(100)
+
+# Look at the correlation between x_1 and x_2:
+cor(x1, x2)
+
+plot(x1, x2)
+# dev.off()
+
+summary(lm(y ~ x1 + x2))
+
+summary(lm(y ~ x1))
+
+summary(lm(y ~ x2))
+
+x1 <- c(x1, 0.1)
+x2 <- c(x2, 0.8)
+y <- c(y, 6)
+
+# Consider what each model thinks about the mismeasured point:
+plot(lm(y ~ x1 + x2))  # 101 is a high-leverage point in this model 
+plot(lm(y ~ x1))  # 101 is a outlier and a high-leverage point in this model 
+plot(lm(y ~ x2))  # 101 is a high-leverage point in this model 
+```
+
+### Exercise 15
+
+```{r}
+library(MASS)
+
+set.seed(1)
+
+# Loop over each predictor and look for a statistically signficant simple linear regression:
+crim <- Boston[, 1]
+model_f_value <- c()
+model_p_value <- c()
+univariate_beta_value <- c()
+possible_predictors <- colnames(Boston)
+for (pi in 1:length(possible_predictors)) {
+    if (possible_predictors[pi] == "crim") {
+        next
+    }
+    x <- Boston[, pi]
+    m <- lm(crim ~ x, data = Boston)
+    s <- summary(m)
+    model_f_value <- c(model_f_value, s$fstatistic[1])
+    model_p_value <- c(model_p_value, anova(m)$"Pr(>F)"[1])
+    univariate_beta_value <- c(univariate_beta_value, coefficients(m)["x"])
+    print(sprintf("%s %10.6f", possible_predictors[pi], coefficients(m)["x"]))
+}
+
+```
+
+
+ 
