@@ -3,8 +3,6 @@
 ### Exercise 10
 
 ```{r}
-save_plots <- F
-
 library("ISLR")
 library("MASS")
 library("class")

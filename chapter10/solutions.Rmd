@@ -1,0 +1,142 @@
+## 10.7 Exercises
+
+### Exercise 2
+
+```{r}
+set.seed(0)
+
+DM <- matrix(data = c(0, 0.3, 0.4, 0.7, 0.3, 0, 0.5, 0.8, 0.4, 0.5, 0, 0.45, 0.7, 0.8, 0.45, 0), nrow = 4, ncol = 4, byrow = TRUE)
+
+plot(hclust(as.dist(DM), method = "complete"), main = "complete linkage")
+plot(hclust(as.dist(DM), method = "single"), main = "single linkage")
+
+```
+
+### Exercise 3
+```{r}
+set.seed(0)
+
+# Part (a):
+DF <- data.frame(x1 = c(1, 1, 0, 5, 6, 4), x2 = c(4, 3, 4, 1, 2, 0))
+
+n <- dim(DF)[1]
+K <- 2
+
+# Part (b): Assign each point to a cluster
+labels <- sample(1:K, n, replace = TRUE)
+
+plot(DF$x1, DF$x2, cex = 2, pch = 19, col = (labels + 1), xlab = "gene index", ylab = "unpaired t-value")
+grid()
+
+while (TRUE) {
+    
+    # Part (c): Compute the centroids of each cluster
+    cents <- matrix(nrow = K, ncol = 2)
+    for (l in 1:K) {
+        samps <- labels == l
+        cents[l, ] <- apply(DF[samps, ], 2, mean)
+    }
+    
+    # Part (d): Assign each sample to the centroid it is closest too:
+    new_labels <- rep(NA, n)
+    for (si in 1:n) {
+        smallest_norm <- +Inf
+        for (l in 1:K) {
+            nm <- norm(as.matrix(DF[si, ] - cents[l, ]), type = "2")
+            if (nm < smallest_norm) {
+                smallest_norm <- nm
+                new_labels[si] <- l
+            }
+        }
+    }
+    
+    # Part (e): Repeat until labels stop changing:
+    if (sum(new_labels == labels) == n) {
+        break
+    } else {
+        labels <- new_labels
+    }
+}
+
+# Part (f): Plot the updated cluster labels
+plot(DF$x1, DF$x2, cex = 2, pch = 19, col = (labels + 1), xlab = "gene index", ylab = "unpaired t-value")
+grid()
+```
+
+### Exercise 7
+```{r}
+set.seed(0)
+
+# Scale each observation (not the features):
+USA_scaled <- t(scale(t(USArrests)))
+
+# The correlation of each sample with the other samples:
+Rij <- cor(t(USA_scaled))  # -1 <= Rij <= +1 
+OneMinusRij <- 1 - Rij  # 0 <= 1-Rij <= +2 
+X <- OneMinusRij[lower.tri(OneMinusRij)]
+
+D <- as.matrix(dist(USA_scaled)^2)
+Y <- D[lower.tri(D)]
+
+plot(X, Y)
+
+summary(X/Y)
+```
+
+### Exercise 8
+```{r}
+set.seed(0)
+
+pr.out <- prcomp(USArrests, scale = TRUE)
+
+# Using the output from prcomp:
+pr.var <- pr.out$sdev^2
+pve_1 <- pr.var/sum(pr.var)
+
+# Apply Equation 10.8 directly:
+USArrests_scaled <- scale(USArrests)
+denom <- sum(apply(USArrests_scaled^2, 2, sum))
+
+Phi <- pr.out$rotation
+USArrests_projected <- USArrests_scaled %*% Phi  # this is the same as pr.out$x
+
+numer <- apply(pr.out$x^2, 2, sum)
+pve_2 <- numer/denom
+
+print(pve_1)
+print(pve_2)
+print(pve_1 - pve_2) 
+```
+
+### Exercise 9
+```{r}
+set.seed(0)
+
+# Part (a-b):
+hclust.complete <- hclust(dist(USArrests), method = "complete")
+
+plot(hclust.complete, xlab = "", sub = "", cex = 0.9)
+
+# cutree( hclust.complete, h=150 ) # height we cut at
+ct <- cutree(hclust.complete, k = 3)  # number of clusters to cut into
+
+# Print which states go into each cluster:
+for (k in 1:3) {
+    print(k)
+    print(rownames(USArrests)[ct == k])
+}
+
+# Part (c-d):
+hclust.complete.scale <- hclust(dist(scale(USArrests, center = FALSE)), method = "complete")
+
+plot(hclust.complete.scale, xlab = "", sub = "", cex = 0.9)
+
+ct <- cutree(hclust.complete.scale, k = 3)  # number of clusters to cut into
+
+# Print which states go into each cluster in this case:
+for (k in 1:3) {
+    print(k)
+    print(rownames(USArrests)[ct == k])
+}
+ 
+```

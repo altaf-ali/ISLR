@@ -1,0 +1,250 @@
+## 8.3 Lab: Decision Trees
+
+### 8.3.1 Fitting Classification Trees
+
+The `tree` package provides functionality for classification and regression trees. 
+
+```{r}
+library(tree)
+```
+
+Load the `ISLR` package and attach to the `Carseats` dataset. Then we convert `Sales` from a contiguous variable to a binary one using [`ifelse()`](http://bit.ly/R_ifelse).
+
+```{r}
+library(ISLR)
+attach(Carseats)
+High <- ifelse(Sales <= 8, "No", "Yes")
+```
+
+We then create a new `data.frame` by adding the newly created `High` variable to the `Carseats` data.
+
+```{r}
+Carseats <- data.frame(Carseats, High)
+```
+
+We can fit a classification tree using [`tree()`](http://bit.ly/R_tree) function.
+
+```{r}
+tree.carseats <- tree(High ~ . - Sales, Carseats)
+```
+
+We can get a summary of the fitted model.
+
+```{r}
+summary(tree.carseats)
+```
+
+And plot the results using the [`plot()`](http://bit.ly/R_plot) function.
+
+```{r}
+plot(tree.carseats)
+text(tree.carseats, pretty = 0)
+```
+
+```{r}
+tree.carseats
+```
+
+The `Carseats` dataset has 400 observations, so let's split it into a training and test subsets using [`sample()`](http://bit.ly/R_plot).
+
+```{r}
+set.seed(2)
+train <- sample(1:nrow(Carseats), 200)
+Carseats.test <- Carseats[-train, ]
+High.test <- High[-train]
+tree.carseats <- tree(High ~ . - Sales, Carseats, subset = train)
+tree.pred <- predict(tree.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+(86 + 57)/200
+```
+
+Next we run cross-validation with [`cv.tree()`](http://bit.ly/R_cv_tree) to minimize the error rate.  The `dev` (deviance) component in the fitted model holds the error rate at different parameter values for the number of nodes in `size`.
+
+```{r}
+set.seed(3)
+cv.carseats <- cv.tree(tree.carseats, FUN = prune.misclass)
+names(cv.carseats)
+```
+
+Let's plot the result.
+
+```{r}
+par(mfrow = c(1, 2))
+plot(cv.carseats$size, cv.carseats$dev, type = "b")
+plot(cv.carseats$k, cv.carseats$dev, type = "b")
+```
+
+And prune the tree with using the optimum number of nodes obtained from cross-validation above. We can prune the tree with [`prune.misclass()`](http://bit.ly/R_prune_tree) which is simply a short-hand for calling [`prune.tree()`](http://bit.ly/R_prune_tree) with `method = misclass`.
+
+```{r}
+prune.carseats <- prune.misclass(tree.carseats, best = 9)
+plot(prune.carseats)
+text(prune.carseats, pretty = 0)
+```
+
+Now, we can use [`predict()`](http://bit.ly/R_predict) to see how the model performs on test data.
+
+```{r}
+tree.pred <- predict(prune.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+(94 + 60)/200
+```
+
+We can see the effects of the number of node on the classification error rate by changing the `best` argument.
+
+```{r}
+prune.carseats <- prune.misclass(tree.carseats, best = 15)
+plot(prune.carseats)
+text(prune.carseats, pretty = 0)
+tree.pred <- predict(prune.carseats, Carseats.test, type = "class")
+table(tree.pred, High.test)
+(86 + 62)/200
+```
+
+### 8.3.2 Fitting Regression Trees
+
+The `tree` package also provides functionality to fit regression trees. Let's load the `MASS` package and fit a regression tree on the `Boston` housing values dataset.
+
+```{r}
+library(MASS)
+set.seed(1)
+train <- sample(1:nrow(Boston), nrow(Boston)/2)
+tree.boston <- tree(medv ~ ., Boston, subset = train)
+summary(tree.boston)
+```
+
+Next we plot the results.
+
+```{r}
+plot(tree.boston)
+text(tree.boston, pretty = 0)
+```
+
+Just like classification trees, we can run cross-validation on regression trees with the [`cv.tree()`](http://bit.ly/R_cv_tree) function.
+
+```{r}
+cv.boston <- cv.tree(tree.boston)
+plot(cv.boston$size, cv.boston$dev, type = "b")
+```
+
+We use [`prune.tree()`](http://bit.ly/R_prune_tree) to prune regression trees and plot the results.
+
+```{r}
+prune.boston <- prune.tree(tree.boston, best = 5)
+plot(prune.boston)
+text(prune.boston, pretty = 0)
+```
+
+Now we can the check error rate on the test data set uring using [`predict()`](http://bit.ly/R_predict) and calculating the mean square error.
+
+```{r}
+yhat <- predict(tree.boston, newdata = Boston[-train, ])
+boston.test <- Boston[-train, "medv"]
+plot(yhat, boston.test)
+abline(0, 1)
+mean((yhat - boston.test)^2)
+```
+
+### 8.3.3 Bagging and Random Forests
+
+We will use the `randomForest` package to apply bagging and random forest on `Boston` housing values datasets. Install the package using [`install.packages()`](http://bit.ly/R_install_packages) if necessary and load it with the [`library()`](http://bit.ly/R_library).
+
+We apply bagging the to `Boston` datasets using the [`randomForest()`](http://bit.ly/R_random_forest) function.
+
+```{r}
+library(randomForest)
+set.seed(1)
+bag.boston <- randomForest(medv ~ ., data = Boston, subset = train, mtry = 13, importance = TRUE)
+bag.boston
+```
+
+Next, we look at how well the model fits test data.
+
+```{r}
+yhat.bag <- predict(bag.boston, newdata = Boston[-train, ])
+plot(yhat.bag, boston.test)
+abline(0, 1)
+mean((yhat.bag - boston.test)^2)
+```
+
+We can change the number of trees using the `ntree` argument to the [`randomForest()`](http://bit.ly/R_random_forest) function.
+
+```{r}
+bag.boston <- randomForest(medv ~ ., data = Boston, subset = train, mtry = 13, ntree = 25)
+yhat.bag <- predict(bag.boston, newdata = Boston[-train, ])
+mean((yhat.bag - boston.test)^2)
+```
+
+We can also change the number of variables sampled as candidates by the random forest algorithm using the `mtry` argument. We used all 13 variables above, but let's use `mtry = 6` now.
+
+```{r}
+set.seed(1)
+rf.boston <- randomForest(medv ~ ., data = Boston, subset = train, mtry = 6, importance = TRUE)
+yhat.rf <- predict(rf.boston, newdata = Boston[-train, ])
+mean((yhat.rf - boston.test)^2)
+```
+
+We can look at the variable importance measure using the [`importance()`](http://bit.ly/R_importance) function.
+
+```{r}
+importance(rf.boston)
+```
+
+We can plot the variable importance measure for visual inspection using [`varImpPlot()`](http://bit.ly/R_var_imp_plot).
+
+```{r}
+varImpPlot(rf.boston)
+```
+
+### 8.3.4 Boosting
+
+In the final exercise, we look at applying boosting to the same `Boston` housing values dataset with the `gbm` package.
+
+```{r}
+library(gbm)
+set.seed(1)
+boost.boston <- gbm(medv ~ ., data = Boston[train, ], distribution = "gaussian", n.trees = 5000, interaction.depth = 4)
+```
+
+We can use [`summary()`](http://bit.ly/R_summary) to display the relative influence for each variable and plot the results. 
+
+```{r}
+summary(boost.boston)
+```
+
+Based on the relative influence obtained above, we can plot the marginal effects of the most influential variables using partial dependence plots.
+
+```{r}
+par(mfrow = c(1, 2))
+plot(boost.boston, i = "rm")
+plot(boost.boston, i = "lstat")
+```
+
+We the use [`predict()`](http://bit.ly/R_predict) to see how the model performs on the test data and calculate the mean squared error (MSE).
+
+```{r}
+yhat.boost <- predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)
+```
+
+We can alter the shrinkage parameters to the boosting algorithm and compare the MSE to the previous results.
+
+```{r}
+boost.boston <- gbm(medv ~ ., data = Boston[train, ], distribution = "gaussian", n.trees = 5000, interaction.depth = 4, shrinkage = 0.2, verbose = F)
+yhat.boost <- predict(boost.boston, newdata = Boston[-train, ], n.trees = 5000)
+mean((yhat.boost - boston.test)^2)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

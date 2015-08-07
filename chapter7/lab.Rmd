@@ -199,7 +199,7 @@ library(gam)
 gam.m3 <- gam(wage ~ s(year, 4) + s(age, 5) + education, data = Wage)
 ```
 
-The [`plot()`](http://bit.ly/R_plot) functions the same way as it does with [`lm()`](http://bit.ly/R_lm) and [`glm()`](http://bit.ly/R_glm).
+The [`plot()`](http://bit.ly/R_plot) function behaves the same way as it does with [`lm()`](http://bit.ly/R_lm) and [`glm()`](http://bit.ly/R_glm).
 
 ```{r}
 par(mfrow = c(1, 3))
@@ -210,7 +210,7 @@ plot(gam.m3, se = TRUE, col = "blue")
 plot.gam(gam1, se = TRUE, col = "red")
 ```
 
-We can use [`annova()`](http://bit.ly/R_anova) to find the best performing model.
+We can use [`anova()`](http://bit.ly/R_anova) to find the best performing model.
 
 ```{r}
 gam.m1 <- gam(wage ~ s(age, 5) + education, data = Wage)

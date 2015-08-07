@@ -1,0 +1,325 @@
+## 10.4 Lab 1: Principal Components Analysis
+
+We use the [`USArrests`](http://bit.ly/R_us_arrests) dataset in this exercise to run Principal Component Analysis (PCA). We start by examining the data with some descriptive statistics.
+
+```{r}
+states <- row.names(USArrests)
+states
+```
+
+```{r}
+names(USArrests)
+```
+
+Let's check the mean and variance of the USArrests dataset.
+
+```{r}
+apply(USArrests, 2, mean)
+```
+
+```{r}
+apply(USArrests, 2, var)
+```
+
+We run PCA on our dataset using the [`prcomp()`](http://bit.ly/R_prcomp) function.
+
+```{r}
+pr.out <- prcomp(USArrests, scale = TRUE)
+```
+
+Now lets examing the results from The [`prcomp()`](http://bit.ly/R_prcomp) function.
+
+```{r}
+names(pr.out)
+```
+
+The `center` and `scale` components contain the mean and standard deviations prior to scaling.
+
+```{r}
+pr.out$center
+pr.out$scale
+```
+
+The `rotation` component correspondes to the rotation matrix whose columns contain the eigenvectors.
+
+```{r}
+pr.out$rotation
+```
+
+Let's check the dimentions of `x` component which returns the rotated data.
+
+```{r}
+dim(pr.out$x)
+```
+
+We then plot the first two principal components using [`biplot()`](http://bit.ly/R_biplot).
+
+```{r}
+biplot(pr.out, scale = 0)
+```
+
+```{r}
+pr.out$rotation <- -pr.out$rotation
+pr.out$x <- -pr.out$x
+biplot(pr.out, scale = 0)
+```
+
+We can compute the variance associated with each principal component from the standard deviation returned by [`prcomp()`](http://bit.ly/R_prcomp).
+
+```{r}
+pr.out$sdev
+```
+
+```{r}
+pr.var <- pr.out$sdev^2
+pr.var
+```
+
+Let's compute the proportional variance as well.
+
+```{r}
+pve <- pr.var/sum(pr.var)
+pve
+```
+
+Now we can plot the proportional variance for each principal component.
+
+```{r}
+plot(pve, xlab = "Principal Component", ylab = "Proportion of Variance Explained ", ylim = c(0, 1), type = "b")
+plot(cumsum(pve), xlab = "Principal Component ", ylab = " Cumulative Proportion of Variance Explained ", ylim = c(0, 1), type = "b")
+```
+
+```{r}
+a <- c(1, 2, 8, -3)
+cumsum(a)
+```
+
+## 10.5 Lab 2: Clustering
+
+### 10.5.1 K-Means Clustering
+
+In this exercise we use K-Means clustering on randomly generated data using the [`kmeans()`](http://bit.ly/R_kmeans) function.
+
+```{r}
+set.seed(2)
+x <- matrix(rnorm(50 * 2), ncol = 2)
+x[1:25, 1] <- x[1:25, 1] + 3
+x[1:25, 2] <- x[1:25, 2] - 4
+```
+
+Let's start by clustering the data into two clusters with `K = 2`.
+
+```{r}
+km.out <- kmeans(x, 2, nstart = 20)
+```
+
+The [`kmeans()`](http://bit.ly/R_kmeans) function returns the cluster assignments in the `cluster` component.
+
+```{r}
+km.out$cluster
+```
+
+Now let's plot the clusters.
+
+```{r}
+plot(x, col = (km.out$cluster + 1), main = "K-Means Clustering Results with K=2", xlab = "", ylab = "", pch = 20, cex = 2)
+```
+
+We can run K-means with different values for the number of clusters such as `K = 3` and plot the results.
+
+```{r}
+set.seed(4)
+km.out <- kmeans(x, 3, nstart = 20)
+km.out
+```
+
+```{r}
+plot(x, col = (km.out$cluster + 1), main = "K-Means Clustering Results with K=3", xlab = "", ylab = "", pch = 20, cex = 2)
+```
+
+We can control the initial cluster assignments with the `nstart` argument to [`kmeans()`](http://bit.ly/R_kmeans).
+
+```{r}
+set.seed(3)
+km.out <- kmeans(x, 3, nstart = 1)
+km.out$tot.withinss
+km.out <- kmeans(x, 3, nstart = 20)
+km.out$tot.withinss
+```
+
+### 10.5.2 Hierarchical Clustering
+
+We can use hierarchical clustering on the dataset we generated in the previous exercise using the [`hclust()`](http://bit.ly/R_hclust) function.
+
+```{r}
+hc.complete <- hclust(dist(x), method = "complete")
+```
+
+The [`hclust()`](http://bit.ly/R_hclust) function supports various agglomeration methods including "single", "complete", and "average" linkages.
+
+```{r}
+hc.average <- hclust(dist(x), method = "average")
+hc.single <- hclust(dist(x), method = "single")
+```
+
+We can compare the different linkages by plotting the results obtained with different methods.
+
+```{r}
+par(mfrow = c(1, 3))
+plot(hc.complete, main = "Complete Linkage", xlab = "", sub = "", cex = 0.9)
+plot(hc.average, main = "Average Linkage", xlab = "", sub = "", cex = 0.9)
+plot(hc.single, main = "Single Linkage", xlab = "", sub = "", cex = 0.9)
+```
+
+We can cut the tree into different groups using the [`cutree()`](http://bit.ly/R_cutree) function.
+
+```{r}
+cutree(hc.complete, 2)
+cutree(hc.average, 2)
+cutree(hc.single, 2)
+```
+
+```{r}
+cutree(hc.single, 4)
+```
+
+We can scale the dataset before it to the clustering algorithm by first calling [`scale()`](http://bit.ly/R_scale).
+
+```{r}
+xsc <- scale(x)
+plot(hclust(dist(xsc), method = "complete"), main = "Hierarchical Clustering with Scaled Features ")
+```
+
+```{r}
+x <- matrix(rnorm(30 * 3), ncol = 3)
+dd <- as.dist(1 - cor(t(x)))
+plot(hclust(dd, method = "complete"), main = "Complete Linkage with Correlation -Based Distance", xlab = "", sub = "")
+```
+
+## 10.6 Lab 3: NCI60 Data Example
+
+In this exercise, we apply PCA and clustering algorithms to the gene expression dataset from the Stanford NC160 Cancer Microarray Project.
+
+```{r}
+library(ISLR)
+nci.labs <- NCI60$labs
+nci.data <- NCI60$data
+```
+
+Let's examine the dimensions of the dataset.
+
+```{r}
+dim(nci.data)
+```
+
+The [`table()`](http://bit.ly/R_table) function can be used to produce crosstabs from the dataset.
+
+```{r}
+nci.labs[1:4]
+table(nci.labs)
+```
+
+### 10.6.1 PCA on the NCI60 Data
+
+We use [`prcomp()`](http://bit.ly/R_prcomp) to run principal component analysis as shown in the PCA exercise above.
+
+```{r}
+pr.out <- prcomp(nci.data, scale = TRUE)
+```
+
+We create a function to assign unique colors to each cancer type.
+
+```{r}
+Cols <- function(vec) {
+    cols <- rainbow(length(unique(vec)))
+    return(cols[as.numeric(as.factor(vec))])
+}
+```
+
+We can now use our `Cols()` function to plot the PCA results.
+
+```{r}
+par(mfrow = c(1, 2))
+plot(pr.out$x[, 1:2], col = Cols(nci.labs), pch = 19, xlab = "Z1", ylab = "Z2")
+plot(pr.out$x[, c(1, 3)], col = Cols(nci.labs), pch = 19, xlab = "Z1", ylab = "Z3")
+```
+
+We can get a summary of the proportional variance and plot the variance explained by each principal component.
+
+```{r}
+summary(pr.out)
+plot(pr.out)
+```
+
+We can also plot the proportional variance explained (PVE) and the cummulative PVE for each principal component.
+
+```{r}
+pve <- 100 * pr.out$sdev^2/sum(pr.out$sdev^2)
+par(mfrow = c(1, 2))
+plot(pve, type = "o", ylab = "PVE", xlab = "Principal Component", col = " blue ")
+plot(cumsum(pve), type = "o", ylab = "Cumulative PVE", xlab = "Principal Component ", col = " brown3 ")
+```
+
+### 10.6.2 Clustering the Observations of the NCI60 Data
+
+In this final exercise we use heirchical and K-means clustering on the NC160 dataset. We first scale the data to have a zero mean and standard deviation of one.
+
+```{r}
+sd.data <- scale(nci.data)
+```
+
+We run heirchical clustering with different linakges and plot the results.
+
+```{r}
+par(mfrow = c(1, 3))
+data.dist <- dist(sd.data)
+plot(hclust(data.dist), labels = nci.labs, main = "Complete Linkage", xlab = "", sub = "", ylab = "")
+plot(hclust(data.dist, method = "average"), labels = nci.labs, main = "Average Linkage", xlab = "", sub = "", ylab = "")
+plot(hclust(data.dist, method = "single"), labels = nci.labs, main = "Single Linkage", xlab = "", sub = "", ylab = "")
+```
+
+We cut the tree to give us four clusters using [`cutree()`](http://bit.ly/R_cutree).
+
+```{r}
+hc.out <- hclust(dist(sd.data))
+hc.clusters <- cutree(hc.out, 4)
+table(hc.clusters, nci.labs)
+```
+
+And plot the results with four clusters.
+
+```{r}
+par(mfrow = c(1, 1))
+plot(hc.out, labels = nci.labs)
+abline(h = 139, col = "red")
+```
+
+We can get a summary of the result from the return value of [`hclust()`](http://bit.ly/R_hclust).
+
+```{r}
+hc.out
+```
+
+For clustering the cancer types in four groups with K-means, we simply run [`kmeans()`](http://bit.ly/R_kmeans) with `K = 4`.
+
+```{r}
+set.seed(2)
+km.out <- kmeans(sd.data, 4, nstart = 20)
+km.clusters <- km.out$cluster
+table(km.clusters, hc.clusters)
+```
+
+We can also combine the different algorithms by first running principal component analysis and then performing heirchical clustering on the first few principal components.
+
+```{r}
+hc.out <- hclust(dist(pr.out$x[, 1:5]))
+plot(hc.out, labels = nci.labs, main = "Hier. Clust. on First Five Score Vectors ")
+table(cutree(hc.out, 4), nci.labs)
+```
+
+
+
+
+
+
+ 

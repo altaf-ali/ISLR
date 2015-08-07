@@ -1,15 +1,45 @@
-* [Chapter 3. Linear Regression](chapter3/index.md)
-    * [Lab](chapter3/lab.md)
-    * [Solutions](chapter3/solutions.md)
+```{r echo=FALSE, comment=NA, indent=""}
+library(rvest)
 
-* [Chapter 4. Classification](chapter4/index.md)
-    * [Lab](chapter4/lab.md)
-    * [Solutions](chapter4/solutions.md)
+knitr::knit_hooks$set(
+  output = function(x, options) {
+    paste0(x)
+    }
+  )
 
-* [Chapter 5. Resampling Methods](chapter5/index.md)
-    * [Lab](chapter5/lab.md)
-    * [Solutions](chapter5/solutions.md)
+library(stringr)
 
-* [Chapter 7. Moving Beyond Linearity](chapter7/index.md)
-    * [Lab](chapter7/lab.md)
-    * [Solutions](chapter7/solutions.md)
+outline <- '
+Chapter, Title
+1,
+2,
+3, Linear Regression
+4, Classification
+5, Resampling Methods
+6,
+7, Moving Beyond Linearity
+8, Tree-Based Methods
+9,
+10, Unsupervised Learning
+'
+
+df <- read.csv(textConnection(outline), header=TRUE)
+
+add_chapter <- function(row) {
+  chapter = str_trim(row['Chapter'])
+  title = str_trim(row['Title'])
+  
+  add_chapter_content <- function(chapter, label, filename) {
+    file_path = sprintf("chapter%s/%s", chapter, filename)
+    if (file.exists(file_path))
+      cat(sprintf("    * [%s](%s)\n", label, file_path))
+  }
+  
+  cat(sprintf("* [Chapter %s. %s](chapter%s/index.md)\n", chapter, title, chapter))
+  add_chapter_content(chapter, "Lab", "lab.md")
+  add_chapter_content(chapter, "Solutions", "solutions.md")
+}
+
+invisible(apply(df[,c('Chapter', 'Title')], 1, add_chapter))
+```
+
