@@ -1,4 +1,0 @@
-# Chapter 10. Unsupervised Learning
-
-* [Lab](lab.md)
-* [Solutions](solutions.md)

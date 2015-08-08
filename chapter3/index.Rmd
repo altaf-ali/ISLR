@@ -1,4 +1,0 @@
-# Chapter 3. Linear Regression
-
-- [Lab](./chapter3/lab.md)
-- [Solutions](./solutions.md)

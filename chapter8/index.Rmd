@@ -1,4 +1,0 @@
-# Chapter 8. Tree-Based Methods
-
-* [Lab](lab.html)
-* [Solutions](solutions.html)

@@ -1,0 +1,12 @@
+Chapter, Title
+1,
+2,
+3, Linear Regression
+4, Classification
+5, Resampling Methods
+6,
+7, Moving Beyond Linearity
+8, Tree-Based Methods
+9,
+10, Unsupervised Learning
+

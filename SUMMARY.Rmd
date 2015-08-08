@@ -1,45 +1,42 @@
 ```{r echo=FALSE, comment=NA, indent=""}
-library(rvest)
-
-knitr::knit_hooks$set(
-  output = function(x, options) {
-    paste0(x)
-    }
-  )
-
 library(stringr)
 
-outline <- '
-Chapter, Title
-1,
-2,
-3, Linear Regression
-4, Classification
-5, Resampling Methods
-6,
-7, Moving Beyond Linearity
-8, Tree-Based Methods
-9,
-10, Unsupervised Learning
-'
-
-df <- read.csv(textConnection(outline), header=TRUE)
+knitr::knit_hooks$set(output = function(x, options) {
+  paste0(x)
+})
 
 add_chapter <- function(row) {
-  chapter = str_trim(row['Chapter'])
-  title = str_trim(row['Title'])
+  chapter <- str_trim(row['Chapter'])
+  title <- str_trim(row['Title'])
   
+  chapter_dir <- paste0("chapter", chapter)
+  if (!dir.exists(chapter_dir))  
+    return(NULL)
+  
+  chapter_index_filename <- file.path(chapter_dir, "index.md")
+  
+  chapter_index <- file(chapter_index_filename, "w")
+  write(sprintf("# Chapter %s. %s", chapter, title), chapter_index)
+
   add_chapter_content <- function(chapter, label, filename) {
-    file_path = sprintf("chapter%s/%s", chapter, filename)
-    if (file.exists(file_path))
-      cat(sprintf("    * [%s](%s)\n", label, file_path))
+    file_path <- file.path(chapter_dir, filename)
+    
+    if (file.exists(file_path)) {
+      cat(sprintf("    - [%s](%s)\n", label, file_path))
+      write(sprintf("- [%s](%s)", label, filename), chapter_index, append = TRUE)
+    }
   }
   
-  cat(sprintf("* [Chapter %s. %s](chapter%s/index.md)\n", chapter, title, chapter))
+  cat(sprintf("- [Chapter %s. %s](%s)\n", chapter, title, chapter_index_filename))
   add_chapter_content(chapter, "Lab", "lab.md")
   add_chapter_content(chapter, "Solutions", "solutions.md")
+  
+  close(chapter_index)
 }
 
-invisible(apply(df[,c('Chapter', 'Title')], 1, add_chapter))
+chapters <- read.csv("chapters.txt", header=TRUE)
+
+invisible(apply(chapters[,c('Chapter', 'Title')], 1, add_chapter))
 ```
+
 
