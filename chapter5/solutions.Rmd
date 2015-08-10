@@ -1,13 +1,3 @@
----
-title: 'Chapter 5: Resampling Methods'
-output: html_document
-bibliography: ../bibliography/bibliography.bib
----
-
-For detailed description of the exercises, please refer to @james2013 [pp. 175-201]. 
-
-Solutions provided here are based on @weatherwax2014.
-
 ## 5.4 Exercises
 
 ```{r}
@@ -222,4 +212,3 @@ ten_percent_boot.fn <- function(data, index) {
 boot(Boston$medv, ten_percent_boot.fn, 1000)
 ``` 
 
-### References

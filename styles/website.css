@@ -1,6 +1,5 @@
 .book .book-summary {
-  color: #59b259;
-  background: #2e3133;
+  background: #253939;
 }
 
 .book .book-body {
@@ -10,9 +9,11 @@
 .book .book-summary ul.summary li, 
 .book .book-summary ul.summary li a, 
 .book .book-summary ul.summary li span,
+.book .book-summary ul.summary li.active a, 
 .book .book-summary ul.summary li.done > a, 
-.book .book-summary ul.summary li a:hover {
-  color: #5cb85c;
+.book .book-summary ul.summary li a:hover,
+.book .book-summary ul.summary li i.fa-check {
+  color: #e8f1f2;
 }
 
 .book .book-summary ul.summary li a:hover {
