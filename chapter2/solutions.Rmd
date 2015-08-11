@@ -1,0 +1,91 @@
+## 2.4 Exercises
+
+### Exercise 8
+
+```{r}
+college <- read.csv("http://www-bcf.usc.edu/~gareth/ISL/College.csv")
+
+rownames(college) <- college[, 1]
+college <- college[, -1]
+
+head(college)
+
+summary(college)
+
+pairs(college[, 1:10])
+
+# plot side by side boxplots of Outstate versus Private (Private universities have more out of state students):
+plot(college$Private, college$Outstate)
+
+Elite <- rep("No", nrow(college))
+Elite[college$Top10perc > 50] <- "Yes"
+Elite <- as.factor(Elite)
+college <- data.frame(college, Elite)
+
+summary(Elite)
+
+# plot side by side boxplots of Outstate versus Elite (Elite universities have more out of state students):
+plot(college$Elite, college$Outstate)
+
+# Part vi (Some interesting observations):
+college[which.max(college$Top10perc), ]  # what is the university with the most students in the top 10% of class
+
+acceptance_rate <- college$Accept/college$Apps
+
+college[which.min(acceptance_rate), ]  # what university has the smallest acceptance rate
+
+college[which.max(acceptance_rate), ]  # what university has the most liberal acceptance rate
+```
+
+### Exercise 9
+
+```{r}
+Auto <- read.csv("http://www-bcf.usc.edu/~gareth/ISL/Auto.csv", header = T, na.strings = "?")
+Auto <- na.omit(Auto)
+
+summary(Auto)
+
+qualitative_columns <- c(2, 8, 9)
+
+sapply(Auto[, -qualitative_columns], range)
+
+sapply(Auto[, -qualitative_columns], mean)
+sapply(Auto[, -qualitative_columns], sd)
+
+# Part (d):
+sapply(Auto[-seq(10, 85), -qualitative_columns], mean)
+
+pairs(Auto[, -qualitative_columns])
+
+plot(Auto$year, Auto$mpg)
+# dev.off()
+
+# Lets plot some mpg vs. some of our qualitative features: 
+plot(as.factor(Auto$cylinders), Auto$mpg)
+
+plot(as.factor(Auto$origin), Auto$mpg)
+```
+
+### Exercise 10
+
+```{r}
+library(MASS)
+
+all_correlations <- cor(Boston)
+print(all_correlations[, 14])
+
+cols <- c(14, 13, 6, 11, 3, 10)
+
+pairs(Boston[, cols])
+# dev.off()
+
+# Look how the variable most correlated to crim (turns out to be rad)
+plot(Boston[, 1], Boston[, 9])
+```
+
+
+
+
+
+
+
