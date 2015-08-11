@@ -260,14 +260,14 @@ hist(mpg, col = 2)
 hist(mpg, col = 2, breaks = 15)
 ```
 
-To generated a matrix of scatterplots, we can use the  [`pairs()`](http://bit.ly/R_pairs) 
+To generate a matrix of scatterplots, we can use the  [`pairs()`](http://bit.ly/R_pairs) 
 
 ```{r}
 pairs(Auto)
 pairs(~mpg + displacement + horsepower + weight + acceleration, Auto)
 ```
 
-The [`identify()`](http://bit.ly/R_identify) function can be used to identify specific points on a plot. In an interaction session in R-Studio, [`identify()`](http://bit.ly/R_identify) allows you to click on specific points and labels them on screen for convenient identification.
+The [`identify()`](http://bit.ly/R_identify) function can be used to identify specific points on a plot. In an interactive session in R-Studio, [`identify()`](http://bit.ly/R_identify) allows you to click on specific points and labels them on screen for convenient identification.
 
 ```{r}
 plot(horsepower, mpg)
