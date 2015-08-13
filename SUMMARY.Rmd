@@ -37,6 +37,10 @@ add_chapter <- function(row) {
 chapters <- read.csv("chapters.txt", header=TRUE)
 
 invisible(apply(chapters[,c('Chapter', 'Title')], 1, add_chapter))
+
+cat("- [References](references.md)\n")
+
+invisible(0)      
 ```
 
 

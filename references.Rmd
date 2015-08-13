@@ -1,0 +1,8 @@
+---
+bibliography: ./bibliography/bibliography.bib
+csl: ./bibliography/apa.csl
+nocite: |
+  @james2013, @weatherwax2014
+---
+
+# References

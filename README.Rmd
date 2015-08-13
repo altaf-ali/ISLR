@@ -1,0 +1,21 @@
+---
+bibliography: ./bibliography/bibliography.bib
+csl: ./bibliography/apa.csl
+suppress-bibliography: yes 
+---
+
+# An Introduction to Statistical Learning: 
+### with Applications in R [@james2013]
+
+The content in this online notebook is based on the following sources:
+
+##### 1. Introduction to Statistical Learning: with Applications in R [@james2013]
+All lab exercises are from @james2013. The companion [website](http://www-bcf.usc.edu/~gareth/ISL) for @james2013 offers additional resources, including the ISLR R package, datasets, figures, and a PDF version of the book.
+
+##### 2. A Solution Manual and Notes for: An Introduction to Statistical Learning [@weatherwax2014]
+All solutions are from @weatherwax2014 and were downloaded directly from [author's website](http://waxworksmath.com/Authors/G_M/James/james.html). 
+
+
+
+
+
