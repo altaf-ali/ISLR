@@ -1,0 +1,434 @@
+## 6.8 Exercises
+
+### Exercise 8
+
+```{r}
+library("ISLR")
+library("leaps")
+library("glmnet")
+
+set.seed(0)
+
+n <- 100
+X <- rnorm(n)
+epsilon <- 0.1 * rnorm(n)
+
+beta_0 <- 1
+beta_1 <- -0.1
+beta_2 <- +0.05
+beta_3 <- 0.75
+
+Y <- beta_0 + beta_1 * X + beta_2 * X^2 + beta_3 * X^3 + epsilon
+
+DF <- data.frame(Y = Y, X = X, X2 = X^2, X3 = X^3, X4 = X^4, X5 = X^5, X6 = X^6, X7 = X^7, X8 = X^8, X9 = X^9, X10 = X^10)
+
+# Use the validation approach with regsubsets
+train <- sample(c(TRUE, FALSE), n, rep = TRUE)  # will roughly assign TRUE to one-half of the data (FALSE to the other half).
+test <- (!train)
+
+
+# -- Apply best subset selection: --
+regfit.full <- regsubsets(Y ~ ., data = DF[train, ], nvmax = 10)
+print(summary(regfit.full))
+
+reg.summary <- summary(regfit.full)
+
+# Test models on the validation set:
+test.mat <- model.matrix(Y ~ ., data = DF[test, ])
+val.errors <- rep(NA, 10)
+for (ii in 1:10) {
+    coefi <- coef(regfit.full, id = ii)
+    pred <- test.mat[, names(coefi)] %*% coefi
+    val.errors[ii] <- mean((DF$Y[test] - pred)^2)
+}
+print("best subset validation errors")
+print(val.errors)
+k <- which.min(val.errors)
+print(k)
+print(coef(regfit.full, id = k))
+
+old.par <- par(mfrow = c(1, 4))
+# plot( reg.summary$rss, xlab='Number of variables', ylab='RSS' )
+plot(reg.summary$cp, xlab = "Number of variables", ylab = "Cp", pch = 19)
+plot(reg.summary$bic, xlab = "Number of variables", ylab = "BIC", pch = 19)
+plot(reg.summary$adjr2, xlab = "Number of variables", ylab = "adjusted R2", pch = 19)
+
+plot(val.errors, xlab = "Number of variables", ylab = "Validation Errors", pch = 19)
+
+par(mfrow = c(1, 1))
+
+# -- Now apply foward selection on the training set: --
+regfit.forward <- regsubsets(Y ~ ., data = DF[train, ], nvmax = 10, method = "forward")
+print(summary(regfit.forward))
+
+reg.summary <- summary(regfit.forward)
+
+# Test models on the validation set:
+test.mat <- model.matrix(Y ~ ., data = DF[test, ])
+val.errors <- rep(NA, 10)
+for (ii in 1:10) {
+    coefi <- coef(regfit.forward, id = ii)
+    pred <- test.mat[, names(coefi)] %*% coefi
+    val.errors[ii] <- mean((DF$Y[test] - pred)^2)
+}
+print("forward selection validation errors")
+print(val.errors)
+k <- which.min(val.errors)
+print(k)
+print(coef(regfit.forward, id = k))
+
+old.par <- par(mfrow = c(1, 4))
+# plot( reg.summary$rss, xlab='Number of variables', ylab='RSS' )
+plot(reg.summary$cp, xlab = "Number of variables", ylab = "Cp", pch = 19)
+plot(reg.summary$bic, xlab = "Number of variables", ylab = "BIC", pch = 19)
+plot(reg.summary$adjr2, xlab = "Number of variables", ylab = "adjusted R2", pch = 19)
+
+plot(val.errors, xlab = "Number of variables", ylab = "Validation Errors", pch = 19)
+
+par(mfrow = c(1, 1))
+
+
+# -- Now apply backwards selection to the training set: --
+regfit.backward <- regsubsets(Y ~ ., data = DF[train, ], nvmax = 10, method = "backward")
+print(summary(regfit.backward))
+
+reg.summary <- summary(regfit.backward)
+
+# Test models on the validation set:
+test.mat <- model.matrix(Y ~ ., data = DF[test, ])
+val.errors <- rep(NA, 10)
+for (ii in 1:10) {
+    coefi <- coef(regfit.backward, id = ii)
+    pred <- test.mat[, names(coefi)] %*% coefi
+    val.errors[ii] <- mean((DF$Y[test] - pred)^2)
+}
+print("backwards selection validation errors")
+print(val.errors)
+k <- which.min(val.errors)
+print(k)
+print(coef(regfit.backward, id = k))
+
+old.par <- par(mfrow = c(1, 4))
+# plot( reg.summary$rss, xlab='Number of variables', ylab='RSS' )
+plot(reg.summary$cp, xlab = "Number of variables", ylab = "Cp", pch = 19)
+plot(reg.summary$bic, xlab = "Number of variables", ylab = "BIC", pch = 19)
+plot(reg.summary$adjr2, xlab = "Number of variables", ylab = "adjusted R2", pch = 19)
+
+plot(val.errors, xlab = "Number of variables", ylab = "Validation Errors", pch = 19)
+par(mfrow = c(1, 1))
+
+
+# -- Now apply the lasso to our training set: --
+
+# First fit the lasso model for all of the given lambda values :
+grid <- 10^seq(10, -2, length = 100)  # a grid of lambda values 
+Y <- DF$Y
+MM <- model.matrix(Y ~ ., data = DF)  # the predictors as a datamatrix 
+lasso.mod <- glmnet(MM, Y, alpha = 1, lambda = grid)
+plot(lasso.mod)  # plots the extracted coefficients as a function of lambda 
+
+# Apply cross validation (to pick the best value of lambda):
+cv.out <- cv.glmnet(MM, Y, alpha = 1)
+bestlam <- cv.out$lambda.1se
+print("lasso CV best value of lambda (one standard error)")
+print(bestlam)
+
+plot(cv.out)
+
+# Extract the optimal coefficients used:
+lasso.coef <- predict(lasso.mod, type = "coefficients", s = bestlam)
+print(lasso.coef)
+
+
+# Part (f) Try a different regression function:
+X <- rnorm(n)
+epsilon <- 0.1 * rnorm(n)
+
+beta_0 <- 1
+beta_7 <- 2.5
+Y <- beta_0 + beta_7 * X^7 + epsilon
+DF <- data.frame(Y = Y, X = X, X2 = X^2, X3 = X^3, X4 = X^4, X5 = X^5, X6 = X^6, X7 = X^7, X8 = X^8, X9 = X^9, X10 = X^10)
+
+train <- sample(c(TRUE, FALSE), n, rep = TRUE)  # will roughly assign TRUE to one-half of the data (FALSE to the other half).
+test <- (!train)
+
+# Best subset selection:
+regfit.full <- regsubsets(Y ~ ., data = DF[train, ], nvmax = 10)
+print(summary(regfit.full))
+
+# Test best subset models on the validation set:
+test.mat <- model.matrix(Y ~ ., data = DF[test, ])
+val.errors <- rep(NA, 10)
+for (ii in 1:10) {
+    coefi <- coef(regfit.full, id = ii)
+    pred <- test.mat[, names(coefi)] %*% coefi
+    val.errors[ii] <- mean((DF$Y[test] - pred)^2)
+}
+print("best subsets validation errors")
+print(val.errors)
+k <- which.min(val.errors)
+print(k)
+print("best subsets optimal coefficients")
+print(coef(regfit.full, id = k))  # print the coefficients of the best model 
+print(val.errors[k])
+
+# Using the lasso technique:
+
+# First apply cross validation (to find the optimal value of lambda):
+MM <- model.matrix(Y ~ ., data = DF)
+
+cv.out <- cv.glmnet(MM, Y, alpha = 1)
+plot(cv.out)
+bestlam <- cv.out$lambda.1se
+print("best lambda (1 se)")
+print(bestlam)
+
+# Now fit the lasso with this value of lambda:
+lasso.mod <- glmnet(MM, Y, alpha = 1)
+
+lasso.coef <- predict(lasso.mod, type = "coefficients", s = bestlam)
+print("lasso optimal coefficients")
+print(lasso.coef)
+
+print("I do not think the predict method is working correctly...")
+lasso.predict <- predict(lasso.mod, s = bestlam, newx = MM)
+print("lasso RSS error")
+print(mean((Y - lasso.predict)^2))
+```
+
+
+### Exercise 9
+
+```{r}
+library(pls)
+
+set.seed(0)
+
+n <- dim(College)[1]
+p <- dim(College)[2]
+
+train <- sample(c(TRUE, FALSE), n, rep = TRUE)  # will roughly assign TRUE to one-half of the data (FALSE to the other half).
+test <- (!train)
+
+College_train <- College[train, ]
+College_test <- College[test, ]
+
+# Part (b):
+m <- lm(Apps ~ ., data = College_train)
+
+Y_hat <- predict(m, newdata = College_test)
+MSE <- mean((College_test$Apps - Y_hat)^2)
+print(sprintf("Linear model test MSE= %10.3f", MSE))
+
+
+# Part (c):
+Y <- College_train$Apps
+MM <- model.matrix(Apps ~ ., data = College_train)
+cv.out <- cv.glmnet(MM, Y, alpha = 0)
+plot(cv.out)
+bestlam <- cv.out$lambda.1se
+# print( 'ridge regression CV best value of lambda (one standard error)' ) print( bestlam )
+
+ridge.mod <- glmnet(MM, Y, alpha = 0)
+
+Y_hat <- predict(ridge.mod, s = bestlam, newx = model.matrix(Apps ~ ., data = College_test))
+MSE <- mean((College_test$Apps - Y_hat)^2)
+print(sprintf("Ridge regression test MSE= %10.3f", MSE))
+
+
+# Part (d):
+cv.out <- cv.glmnet(MM, Y, alpha = 1)
+plot(cv.out)
+bestlam <- cv.out$lambda.1se
+# print( 'lasso CV best value of lambda (one standard error)' ) print( bestlam )
+
+lasso.mod <- glmnet(MM, Y, alpha = 1)
+
+Y_hat <- predict(lasso.mod, s = bestlam, newx = model.matrix(Apps ~ ., data = College_test))
+MSE <- mean((College_test$Apps - Y_hat)^2)
+print(sprintf("Lasso regression test MSE= %10.3f", MSE))
+print("lasso coefficients")
+print(predict(lasso.mod, type = "coefficients", s = bestlam))
+
+# Part (e):
+pcr.mod <- pcr(Apps ~ ., data = College_train, scale = TRUE, validation = "CV")
+
+# Use this to select the number of components to include ... looks like CV suggests we should use ALL predictors
+validationplot(pcr.mod, val.type = "MSEP")
+
+ncomp <- 17
+Y_hat <- predict(pcr.mod, College_test, ncomp = ncomp)
+MSE <- mean((College_test$Apps - Y_hat)^2)
+print(sprintf("PCR (with ncomp= %5d) test MSE= %10.3f", ncomp, MSE))
+
+# Part (f):
+pls.mod <- plsr(Apps ~ ., data = College_train, scale = TRUE, validation = "CV")
+
+# Use this to select the number of components to include ... looks like CV suggests the best is to use ALL predictors but there is
+# not much change in moving from ~ 5 predictors to 17 so we will take 10 (somewhere in the middle)
+validationplot(pls.mod, val.type = "MSEP")
+
+ncomp <- 10
+Y_hat <- predict(pls.mod, College_test, ncomp = ncomp)
+MSE <- mean((College_test$Apps - Y_hat)^2)
+print(sprintf("PLS (with ncomp= %5d) test MSE= %10.3f", ncomp, MSE))
+```
+
+ 
+### Exercise 10
+
+```{r}
+set.seed(0)
+
+# The sample size and the number of features:
+n <- 1000
+p <- 20
+
+# Create the true value of beta (and zero out half of the entries):
+beta_truth <- rnorm(p + 1)  # add one for the constant beta_0 
+zero_locations <- c(2, 3, 4, 7, 8, 11, 12, 15, 17, 20)
+beta_truth[zero_locations] <- 0
+# For debugging lets check that we can recover our coefficients: beta_truth = rep(0,p+1); beta_truth[1] = 1.5; beta_truth[10] = 3.5;
+# beta_truth[15] = -3.4
+print("True values for beta (beta_0-beta_20):")
+print(beta_truth)
+
+# Generate some input features and an output response:
+X <- c(rep(1, n), rnorm(n * p))  # make leading column of ones 
+X <- matrix(X, nrow = n, ncol = (p + 1), byrow = FALSE)
+
+Y <- X %*% beta_truth + rnorm(n)
+
+# Create a dataframe with this data:
+DF <- data.frame(Y, X[, -1])  # drop the column of ones 
+
+train_inds <- sample(1:n, 100)
+test_inds <- (1:n)[-train_inds]
+
+# -- Apply best subset selection using the training data: --
+regfit.full <- regsubsets(Y ~ ., data = DF[train_inds, ], nvmax = 20)
+# print( summary( regfit.full ) )
+reg.summary <- summary(regfit.full)
+
+# Plot the in-sample MSE:
+training.mat <- model.matrix(Y ~ ., data = DF[train_inds, ])
+training.errors <- rep(NA, 20)
+for (ii in 1:20) {
+    coefi <- coef(regfit.full, id = ii)
+    pred <- training.mat[, names(coefi)] %*% coefi
+    training.errors[ii] <- mean((DF$Y[train_inds] - pred)^2)
+}
+print("best subset training MSE")
+print(training.errors)
+
+plot(1:20, training.errors, xlab = "number of predictors", ylab = "training MSE", type = "o", col = "red", ylim = c(0, 9))
+
+# Test models on the validation set:
+test.mat <- model.matrix(Y ~ ., data = DF[test_inds, ])
+val.errors <- rep(NA, 20)
+for (ii in 1:20) {
+    coefi <- coef(regfit.full, id = ii)
+    pred <- test.mat[, names(coefi)] %*% coefi
+    val.errors[ii] <- mean((DF$Y[test_inds] - pred)^2)
+}
+print("best subset validation MSE")
+print(val.errors)
+k <- which.min(val.errors)
+print(k)
+print(coef(regfit.full, id = k))
+points(1:20, val.errors, xlab = "number of predictors", ylab = "testing MSE", type = "o", col = "green")
+
+grid()
+legend(11, 9.25, c("Training MSE", "Testing MSE"), col = c("red", "green"), lty = c(1, 1))
+
+# Part (g):
+nms <- colnames(DF)
+nms[1] <- "(Intercept)"
+names(beta_truth) <- nms
+
+norm.beta.diff <- rep(NA, 20)
+for (ii in 1:20) {
+    coefi <- coef(regfit.full, id = ii)
+    norm.beta.diff[ii] <- sqrt(sum((beta_truth[names(coefi)] - coefi)^2))
+}
+
+plot(1:20, norm.beta.diff, xlab = "number of predictors", ylab = "||beta_truth - beta^r||", type = "o", col = "green")
+grid()
+```
+
+### Exercise 11
+
+```{r}
+library(MASS)
+
+set.seed(0)
+
+n <- dim(Boston)[1]
+p <- dim(Boston)[2]
+
+train <- sample(c(TRUE, FALSE), n, rep = TRUE)  # will roughly assign TRUE to one-half of the data (FALSE to the other half).
+test <- (!train)
+
+Boston_train <- Boston[train, ]
+Boston_test <- Boston[test, ]
+
+# The full linear model:
+m <- lm(crim ~ ., data = Boston_train)
+
+Y_hat <- predict(m, newdata = Boston_test)
+MSE <- mean((Boston_test$crim - Y_hat)^2)
+print(sprintf("Linear model test MSE= %10.3f", MSE))
+
+
+# Ridge regression:
+Y <- Boston_train$crim
+MM <- model.matrix(crim ~ ., data = Boston_train)
+cv.out <- cv.glmnet(MM, Y, alpha = 0)
+plot(cv.out)
+bestlam <- cv.out$lambda.1se
+# print( 'ridge regression CV best value of lambda (one standard error)' ) print( bestlam )
+
+ridge.mod <- glmnet(MM, Y, alpha = 0)
+
+Y_hat <- predict(ridge.mod, s = bestlam, newx = model.matrix(crim ~ ., data = Boston_test))
+MSE <- mean((Boston_test$crim - Y_hat)^2)
+print(sprintf("Ridge regression test MSE= %10.3f", MSE))
+
+
+# The Lasso:
+cv.out <- cv.glmnet(MM, Y, alpha = 1)
+plot(cv.out)
+bestlam <- cv.out$lambda.1se
+# print( 'lasso CV best value of lambda (one standard error)' ) print( bestlam )
+
+lasso.mod <- glmnet(MM, Y, alpha = 1)
+
+Y_hat <- predict(lasso.mod, s = bestlam, newx = model.matrix(crim ~ ., data = Boston_test))
+MSE <- mean((Boston_test$crim - Y_hat)^2)
+print(sprintf("Lasso regression test MSE= %10.3f", MSE))
+print("lasso coefficients")
+print(predict(lasso.mod, type = "coefficients", s = bestlam))
+
+# Principle Component Regression:
+pcr.mod <- pcr(crim ~ ., data = Boston_train, scale = TRUE, validation = "CV")
+
+# Use this to select the number of components to include ... looks like CV suggests we should use 3 predictors
+validationplot(pcr.mod, val.type = "MSEP")
+
+ncomp <- 3
+Y_hat <- predict(pcr.mod, Boston_test, ncomp = ncomp)
+MSE <- mean((Boston_test$crim - Y_hat)^2)
+print(sprintf("PCR (with ncomp= %5d) test MSE= %10.3f", ncomp, MSE))
+
+# Paritial Least Squares:
+pls.mod <- plsr(crim ~ ., data = Boston_train, scale = TRUE, validation = "CV")
+
+# Use this to select the number of components to include ... looks like CV suggests the best is to use 5 predictors
+validationplot(pls.mod, val.type = "MSEP")
+
+ncomp <- 5
+Y_hat <- predict(pls.mod, Boston_test, ncomp = ncomp)
+MSE <- mean((Boston_test$crim - Y_hat)^2)
+print(sprintf("PLS (with ncomp= %5d) test MSE= %10.3f", ncomp, MSE))
+```
+
