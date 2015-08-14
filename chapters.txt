@@ -7,6 +7,6 @@ Chapter, Title
 6, Linear Model Selection and Regularization
 7, Moving Beyond Linearity
 8, Tree-Based Methods
-9,
+9, Support Vector Machines
 10, Unsupervised Learning
 
