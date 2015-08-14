@@ -25,6 +25,11 @@
   color: white;
 }
 
+.book .book-summary ul.summary li.done i.fa-check
+{
+  display: none;
+}
+
 .book .book-body .page-wrapper .page-inner section.normal pre {
   border: 1px solid #ccc;
 }
