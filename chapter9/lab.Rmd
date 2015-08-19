@@ -2,6 +2,8 @@
 
 ### 9.6.1 Support Vector Classifier
 
+In this exercise we will use a support vector classifier with a linear kernel. We start by generating observations from two classes using the [`rnorm()`](http://bit.ly/R_normal) function.
+
 ```{r}
 set.seed(1)
 x <- matrix(rnorm(20 * 2), ncol = 2)
@@ -13,32 +15,41 @@ x[y == 1, ] <- x[y == 1, ] + 1
 plot(x, col = (3 - y))
 ```
 
+The `e1071` package provides functionality to fit a Support Vector Machine classifier.
+
 ```{r}
 dat <- data.frame(x = x, y = as.factor(y))
 library(e1071)
 svmfit <- svm(y ~ ., data = dat, kernel = "linear", cost = 10, scale = FALSE)
 ```
 
+The fitted model from the [`svm()`](http://bit.ly/R_svm) function can be plotted with [`plot()`](http://bit.ly/R_plot).
+
 ```{r}
 plot(svmfit, dat)
 ```
 
+We can inspect the support vectors with the `index` component of the classifier returned from [`svm()`](http://bit.ly/R_svm).
+
 ```{r}
 svmfit$index
 ```
+
+The [`summary()`](http://bit.ly/R_summary) function can be used to print a summary of the classifier.
 
 ```{r}
 summary(svmfit)
 ```
 
-```{r}
-svmfit <- svm(y ~ ., data = dat, kernel = "linear", cost = 0.1, scale = FALSE)
-```
+We can change the `cost` parameter and re-run the classifier to see how the support vectors change.
 
 ```{r}
+svmfit <- svm(y ~ ., data = dat, kernel = "linear", cost = 0.1, scale = FALSE)
 plot(svmfit, dat)
 svmfit$index
 ```
+
+We can run cross-validation on a range of values for the `cost` parameter using the [`tune()`](http://bit.ly/R_tune) function.
 
 ```{r}
 set.seed(1)
@@ -49,10 +60,14 @@ tune.out <- tune(svm, y ~ ., data = dat, kernel = "linear", ranges = list(cost =
 summary(tune.out)
 ```
 
+The best performing model is stored in the `best.model` component of the object returned from [`tune()`](http://bit.ly/R_tune).
+
 ```{r}
 bestmod <- tune.out$best.model
 summary(bestmod)
 ```
+
+We can also classify a different set of observations using the best model obtained from [`tune()`](http://bit.ly/R_tune). First we create a new set of observations with the  [`rnorm()`](http://bit.ly/R_normal) function.
 
 ```{r}
 xtest <- matrix(rnorm(20 * 2), ncol = 2)
@@ -61,10 +76,14 @@ xtest[ytest == 1, ] <- xtest[ytest == 1, ] + 1
 testdat <- data.frame(x = xtest, y = as.factor(ytest))
 ```
 
+We can then use the [`predict()`](http://bit.ly/R_predict) function to classify the observations in `testdat`.
+
 ```{r}
 ypred <- predict(bestmod, testdat)
 table(predict = ypred, truth = testdat$y)
 ```
+
+We can also try a different value for the `cost` parameter and train the classifier again.
 
 ```{r}
 svmfit <- svm(y ~ ., data = dat, kernel = "linear", cost = 0.01, scale = FALSE)
@@ -72,10 +91,14 @@ ypred <- predict(svmfit, testdat)
 table(predict = ypred, truth = testdat$y)
 ```
 
+We can linearly separate the two classes and plot the observations.
+
 ```{r}
 x[y == 1, ] <- x[y == 1, ] + 0.5
 plot(x, col = (y + 5)/2, pch = 19)
 ```
+
+We can fit a classifier with a large value for the `cost` parameter to see how the observations are classified.
 
 ```{r}
 dat <- data.frame(x = x, y = as.factor(y))
@@ -84,6 +107,8 @@ summary(svmfit)
 plot(svmfit, dat)
 ```
 
+We can also try with a a smaller `cost` value.
+
 ```{r}
 svmfit <- svm(y ~ ., data = dat, kernel = "linear", cost = 1)
 summary(svmfit)
@@ -91,6 +116,8 @@ plot(svmfit, dat)
 ```
 
 ### 9.6.2 Support Vector Machine
+
+We begin by generating data with non-linear class boundaries.
 
 ```{r}
 set.seed(1)
@@ -101,9 +128,13 @@ y <- c(rep(1, 150), rep(2, 50))
 dat <- data.frame(x = x, y = as.factor(y))
 ```
 
+We can verify that the class boundaries are not linear by plotting the observations.
+
 ```{r}
 plot(x, col = y)
 ```
+
+We split the data into training and test subsets and run the SVM classifier with `kernel = "radial"` parameter.
 
 ```{r}
 train <- sample(200, 100)
@@ -111,14 +142,20 @@ svmfit <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 1, cost = 1
 plot(svmfit, dat[train, ])
 ```
 
+We can examine the model fit with the  [`summary()`](http://bit.ly/R_summary) function.
+
 ```{r}
 summary(svmfit)
 ```
+
+We can use a larger value for the `cost` parameter and see if it reduces the training errors.
 
 ```{r}
 svmfit <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 1, cost = 1e+05)
 plot(svmfit, dat[train, ])
 ```
+
+We can run cross-validation using the  [`tune()`](http://bit.ly/R_tune) function.
 
 ```{r}
 set.seed(1)
@@ -126,11 +163,15 @@ tune.out <- tune(svm, y ~ ., data = dat[train, ], kernel = "radial", ranges = li
 summary(tune.out)
 ```
 
+We can predict the classes on the test subset and examine the number of observations misclassified.
+
 ```{r}
 table(true = dat[-train, "y"], pred = predict(tune.out$best.model, newdata = dat[-train, ]))
 ```
 
 ### 9.6.3 ROC Curves
+
+We use the `ROCR` package to produce ROC curves on the predictions from the test subset.
 
 ```{r}
 library(ROCR)
@@ -141,16 +182,20 @@ rocplot <- function(pred, truth, ...) {
 }
 ```
 
+Instead of getting the class labels, we can also get fitted values from [`svm()`](http://bit.ly/R_svm) using `decision.values = TRUE` parameter.
+
 ```{r}
-svmfit.opt <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 2, cost = 1, decision.values = T)
+svmfit.opt <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 2, cost = 1, decision.values = TRUE)
 fitted <- attributes(predict(svmfit.opt, dat[train, ], decision.values = TRUE))$decision.values
 ```
+
+We generate the ROC curve with the [`rocplot()`](http://bit.ly/R_roc_plot) function. We can also change the value of $\gamma$ and see if it improves our predictions.
 
 ```{r}
 par(mfrow = c(1, 2))
 rocplot(fitted, dat[train, "y"], main = "Training Data")
 
-svmfit.flex <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 50, cost = 1, decision.values = T)
+svmfit.flex <- svm(y ~ ., data = dat[train, ], kernel = "radial", gamma = 50, cost = 1, decision.values = TRUE)
 fitted <- attributes(predict(svmfit.flex, dat[train, ], decision.values = T))$decision.values
 rocplot(fitted, dat[train, "y"], add = T, col = "red")
 ```
@@ -164,6 +209,8 @@ rocplot(fitted, dat[-train, "y"], add = T, col = "red")
 
 ### 9.6.4 SVM with Multiple Classes
 
+The [`svm()`](http://bit.ly/R_svm) function can also be used to classify observations from multiple-classes. 
+
 ```{r}
 set.seed(1)
 x <- rbind(x, matrix(rnorm(50 * 2), ncol = 2))
@@ -174,12 +221,16 @@ par(mfrow = c(1, 1))
 plot(x, col = (y + 1))
 ```
 
+The [`svm()`](http://bit.ly/R_svm) function now will perform multi-class classification since the dataset we generated now has three class labels.
+
 ```{r}
 svmfit <- svm(y ~ ., data = dat, kernel = "radial", cost = 10, gamma = 1)
 plot(svmfit, dat)
 ```
 
 ### 9.6.5 Application to Gene Expression Data
+
+In this final exercise we run SVM classifier on gene expression data. We load the `ISLR` package and examine the `Khan` dataset.
 
 ```{r}
 library(ISLR)
@@ -190,10 +241,14 @@ length(Khan$ytrain)
 length(Khan$ytest)
 ```
 
+We can examine the class labels associated with the training and test subsets.
+
 ```{r}
 table(Khan$ytrain)
 table(Khan$ytest)
 ```
+
+We use a linear kernel and run SVM classifier on the training subset.
 
 ```{r}
 dat <- data.frame(x = Khan$xtrain, y = as.factor(Khan$ytrain))
@@ -201,6 +256,8 @@ out <- svm(y ~ ., data = dat, kernel = "linear", cost = 10)
 summary(out)
 table(out$fitted, dat$y)
 ```
+
+We can then predict the classes on the test subset using the trained classifier.
 
 ```{r}
 dat.te <- data.frame(x = Khan$xtest, y = as.factor(Khan$ytest))
