@@ -1,0 +1,63 @@
+Installation
+------------
+
+In order to build the book and publish it on GitHub, you need the following:
+
+-   Node.js Package Manager (NPM)
+    -   Download and install it from <https://nodejs.org>
+-   Gitbook
+    -   On Linux and Mac OSX systems, you can install Gitbook from the command line through `npm`. Since `npm` install requires administrative priviliges, make sure you have the correct access level or use `sudo`.
+
+        ``` bash
+        npm install gitbook -g
+        npm install gitbook-cli -g
+        ```
+
+-   RGitbook
+    -   If you don't have `devtools` package installed, then install it first
+
+        ``` r
+        install.packages("devtools")
+        ```
+
+    -   Once `devtools` is installed, get the following fork of `RGitbook` from GitHub.
+
+        ``` r
+        devtools::install_github("altaf-ali/RGitbook")
+        ```
+
+Building
+--------
+
+You can build the book with the buildGitbook() function from the `Rgitbook` package.
+
+``` r
+Rgitbook::buildGitbook()
+```
+
+Cleanup
+-------
+
+If the build process fails or you get unexpected results, then you might want to clean the build area first before running the build.
+
+``` r
+Rgitbook::cleanGitbook()
+```
+
+Testing
+-------
+
+Test the gitbook before publishing it on GitHub.
+
+``` r
+Rgitbook::openGitbook()
+```
+
+Publishing
+----------
+
+Once the book is built, you can publish it with `publishGitbook()`
+
+``` r
+Rgitbook::publishGitbook()
+```

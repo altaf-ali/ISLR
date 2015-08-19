@@ -1,0 +1,36 @@
+.book .book-summary {
+  background: #253939;
+}
+
+.book .book-body {
+  background: #edece4;
+}
+
+.book .book-summary ul.summary li, 
+.book .book-summary ul.summary li a, 
+.book .book-summary ul.summary li span,
+.book .book-summary ul.summary li.active a, 
+.book .book-summary ul.summary li.done > a, 
+.book .book-summary ul.summary li a:hover,
+.book .book-summary ul.summary li i.fa-check {
+  color: #e8f1f2;
+}
+
+.book .book-summary ul.summary li a:hover {
+  background: #242628;
+  text-decoration: none;
+}
+
+.book .book-summary ul.summary li a.gitbook-link {
+  color: white;
+}
+
+.book .book-summary ul.summary li.done i.fa-check
+{
+  display: none;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal pre {
+  border: 1px solid #ccc;
+}
+

@@ -1,0 +1,904 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Solutions | An Introduction to Statistical Learning:</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.2.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../chapter3/index.html" />
+    
+    
+    <link rel="prev" href="../chapter2/lab.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="1.2" data-basepath=".." data-revision="Wed Aug 19 2015 19:44:06 GMT+0100 (BST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter2/index.html">
+            
+                
+                    <a href="../chapter2/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Chapter 2. Statistical Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter2/lab.html">
+            
+                
+                    <a href="../chapter2/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="chapter2/solutions.html">
+            
+                
+                    <a href="../chapter2/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter3/index.html">
+            
+                
+                    <a href="../chapter3/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Chapter 3. Linear Regression
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter3/lab.html">
+            
+                
+                    <a href="../chapter3/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter3/solutions.html">
+            
+                
+                    <a href="../chapter3/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter4/index.html">
+            
+                
+                    <a href="../chapter4/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Chapter 4. Classification
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter4/lab.html">
+            
+                
+                    <a href="../chapter4/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter4/solutions.html">
+            
+                
+                    <a href="../chapter4/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="chapter5/index.html">
+            
+                
+                    <a href="../chapter5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Chapter 5. Resampling Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="chapter5/lab.html">
+            
+                
+                    <a href="../chapter5/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="chapter5/solutions.html">
+            
+                
+                    <a href="../chapter5/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chapter6/index.html">
+            
+                
+                    <a href="../chapter6/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chapter 6. Linear Model Selection and Regularization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="chapter6/lab.html">
+            
+                
+                    <a href="../chapter6/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="chapter6/solutions.html">
+            
+                
+                    <a href="../chapter6/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="chapter7/index.html">
+            
+                
+                    <a href="../chapter7/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Chapter 7. Moving Beyond Linearity
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="chapter7/lab.html">
+            
+                
+                    <a href="../chapter7/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="chapter7/solutions.html">
+            
+                
+                    <a href="../chapter7/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="chapter8/index.html">
+            
+                
+                    <a href="../chapter8/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Chapter 8. Tree-Based Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="chapter8/lab.html">
+            
+                
+                    <a href="../chapter8/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="chapter8/solutions.html">
+            
+                
+                    <a href="../chapter8/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="chapter9/index.html">
+            
+                
+                    <a href="../chapter9/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Chapter 9. Support Vector Machines
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="chapter9/lab.html">
+            
+                
+                    <a href="../chapter9/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="chapter9/solutions.html">
+            
+                
+                    <a href="../chapter9/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="chapter10/index.html">
+            
+                
+                    <a href="../chapter10/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Chapter 10. Unsupervised Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="chapter10/lab.html">
+            
+                
+                    <a href="../chapter10/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="chapter10/solutions.html">
+            
+                
+                    <a href="../chapter10/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >An Introduction to Statistical Learning:</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="2-4-exercises">2.4 Exercises</h2>
+<h3 id="exercise-8">Exercise 8</h3>
+<pre><code class="lang-r">college &lt;- read.csv(<span class="hljs-string">&quot;http://www-bcf.usc.edu/~gareth/ISL/College.csv&quot;</span>)
+
+rownames(college) &lt;- college[, <span class="hljs-number">1</span>]
+college &lt;- college[, -<span class="hljs-number">1</span>]
+
+head(college)
+</code></pre>
+<pre><code>##                              Private Apps Accept Enroll Top10perc
+## Abilene Christian University     Yes 1660   1232    721        23
+## Adelphi University               Yes 2186   1924    512        16
+## Adrian College                   Yes 1428   1097    336        22
+## Agnes Scott College              Yes  417    349    137        60
+## Alaska Pacific University        Yes  193    146     55        16
+## Albertson College                Yes  587    479    158        38
+##                              Top25perc F.Undergrad P.Undergrad Outstate
+## Abilene Christian University        52        2885         537     7440
+## Adelphi University                  29        2683        1227    12280
+## Adrian College                      50        1036          99    11250
+## Agnes Scott College                 89         510          63    12960
+## Alaska Pacific University           44         249         869     7560
+## Albertson College                   62         678          41    13500
+##                              Room.Board Books Personal PhD Terminal
+## Abilene Christian University       3300   450     2200  70       78
+## Adelphi University                 6450   750     1500  29       30
+## Adrian College                     3750   400     1165  53       66
+## Agnes Scott College                5450   450      875  92       97
+## Alaska Pacific University          4120   800     1500  76       72
+## Albertson College                  3335   500      675  67       73
+##                              S.F.Ratio perc.alumni Expend Grad.Rate
+## Abilene Christian University      18.1          12   7041        60
+## Adelphi University                12.2          16  10527        56
+## Adrian College                    12.9          30   8735        54
+## Agnes Scott College                7.7          37  19016        59
+## Alaska Pacific University         11.9           2  10922        15
+## Albertson College                  9.4          11   9727        55
+</code></pre><pre><code class="lang-r">summary(college)
+</code></pre>
+<pre><code>##  Private        Apps           Accept          Enroll       Top10perc    
+##  No :212   Min.   :   81   Min.   :   72   Min.   :  35   Min.   : 1.00  
+##  Yes:565   1st Qu.:  776   1st Qu.:  604   1st Qu.: 242   1st Qu.:15.00  
+##            Median : 1558   Median : 1110   Median : 434   Median :23.00  
+##            Mean   : 3002   Mean   : 2019   Mean   : 780   Mean   :27.56  
+##            3rd Qu.: 3624   3rd Qu.: 2424   3rd Qu.: 902   3rd Qu.:35.00  
+##            Max.   :48094   Max.   :26330   Max.   :6392   Max.   :96.00  
+##    Top25perc      F.Undergrad     P.Undergrad         Outstate    
+##  Min.   :  9.0   Min.   :  139   Min.   :    1.0   Min.   : 2340  
+##  1st Qu.: 41.0   1st Qu.:  992   1st Qu.:   95.0   1st Qu.: 7320  
+##  Median : 54.0   Median : 1707   Median :  353.0   Median : 9990  
+##  Mean   : 55.8   Mean   : 3700   Mean   :  855.3   Mean   :10441  
+##  3rd Qu.: 69.0   3rd Qu.: 4005   3rd Qu.:  967.0   3rd Qu.:12925  
+##  Max.   :100.0   Max.   :31643   Max.   :21836.0   Max.   :21700  
+##    Room.Board       Books           Personal         PhD        
+##  Min.   :1780   Min.   :  96.0   Min.   : 250   Min.   :  8.00  
+##  1st Qu.:3597   1st Qu.: 470.0   1st Qu.: 850   1st Qu.: 62.00  
+##  Median :4200   Median : 500.0   Median :1200   Median : 75.00  
+##  Mean   :4358   Mean   : 549.4   Mean   :1341   Mean   : 72.66  
+##  3rd Qu.:5050   3rd Qu.: 600.0   3rd Qu.:1700   3rd Qu.: 85.00  
+##  Max.   :8124   Max.   :2340.0   Max.   :6800   Max.   :103.00  
+##     Terminal       S.F.Ratio      perc.alumni        Expend     
+##  Min.   : 24.0   Min.   : 2.50   Min.   : 0.00   Min.   : 3186  
+##  1st Qu.: 71.0   1st Qu.:11.50   1st Qu.:13.00   1st Qu.: 6751  
+##  Median : 82.0   Median :13.60   Median :21.00   Median : 8377  
+##  Mean   : 79.7   Mean   :14.09   Mean   :22.74   Mean   : 9660  
+##  3rd Qu.: 92.0   3rd Qu.:16.50   3rd Qu.:31.00   3rd Qu.:10830  
+##  Max.   :100.0   Max.   :39.80   Max.   :64.00   Max.   :56233  
+##    Grad.Rate     
+##  Min.   : 10.00  
+##  1st Qu.: 53.00  
+##  Median : 65.00  
+##  Mean   : 65.46  
+##  3rd Qu.: 78.00  
+##  Max.   :118.00
+</code></pre><pre><code class="lang-r">pairs(college[, <span class="hljs-number">1</span>:<span class="hljs-number">10</span>])
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-1-1.png" alt=""></p>
+<pre><code class="lang-r"><span class="hljs-comment"># plot side by side boxplots of Outstate versus Private (Private universities have more out of state students):</span>
+plot(college$Private, college$Outstate)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-1-2.png" alt=""></p>
+<pre><code class="lang-r">Elite &lt;- rep(<span class="hljs-string">&quot;No&quot;</span>, nrow(college))
+Elite[college$Top10perc &gt; <span class="hljs-number">50</span>] &lt;- <span class="hljs-string">&quot;Yes&quot;</span>
+Elite &lt;- as.factor(Elite)
+college &lt;- data.frame(college, Elite)
+
+summary(Elite)
+</code></pre>
+<pre><code>##  No Yes 
+## 699  78
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># plot side by side boxplots of Outstate versus Elite (Elite universities have more out of state students):</span>
+plot(college$Elite, college$Outstate)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-1-3.png" alt=""></p>
+<pre><code class="lang-r"><span class="hljs-comment"># Part vi (Some interesting observations):</span>
+college[which.max(college$Top10perc), ]  <span class="hljs-comment"># what is the university with the most students in the top 10% of class</span>
+</code></pre>
+<pre><code>##                                       Private Apps Accept Enroll Top10perc
+## Massachusetts Institute of Technology     Yes 6411   2140   1078        96
+##                                       Top25perc F.Undergrad P.Undergrad
+## Massachusetts Institute of Technology        99        4481          28
+##                                       Outstate Room.Board Books Personal
+## Massachusetts Institute of Technology    20100       5975   725     1600
+##                                       PhD Terminal S.F.Ratio perc.alumni
+## Massachusetts Institute of Technology  99       99      10.1          35
+##                                       Expend Grad.Rate Elite
+## Massachusetts Institute of Technology  33541        94   Yes
+</code></pre><pre><code class="lang-r">acceptance_rate &lt;- college$Accept/college$Apps
+
+college[which.min(acceptance_rate), ]  <span class="hljs-comment"># what university has the smallest acceptance rate</span>
+</code></pre>
+<pre><code>##                      Private  Apps Accept Enroll Top10perc Top25perc
+## Princeton University     Yes 13218   2042   1153        90        98
+##                      F.Undergrad P.Undergrad Outstate Room.Board Books
+## Princeton University        4540         146    19900       5910   675
+##                      Personal PhD Terminal S.F.Ratio perc.alumni Expend
+## Princeton University     1575  91       96       8.4          54  28320
+##                      Grad.Rate Elite
+## Princeton University        99   Yes
+</code></pre><pre><code class="lang-r">college[which.max(acceptance_rate), ]  <span class="hljs-comment"># what university has the most liberal acceptance rate</span>
+</code></pre>
+<pre><code>##                          Private Apps Accept Enroll Top10perc Top25perc
+## Emporia State University      No 1256   1256    853        43        79
+##                          F.Undergrad P.Undergrad Outstate Room.Board Books
+## Emporia State University        3957         588     5401       3144   450
+##                          Personal PhD Terminal S.F.Ratio perc.alumni
+## Emporia State University     1888  72       75      19.3           4
+##                          Expend Grad.Rate Elite
+## Emporia State University   5527        50    No
+</code></pre><h3 id="exercise-9">Exercise 9</h3>
+<pre><code class="lang-r">Auto &lt;- read.csv(<span class="hljs-string">&quot;http://www-bcf.usc.edu/~gareth/ISL/Auto.csv&quot;</span>, header = <span class="hljs-literal">T</span>, na.strings = <span class="hljs-string">&quot;?&quot;</span>)
+Auto &lt;- na.omit(Auto)
+
+summary(Auto)
+</code></pre>
+<pre><code>##       mpg          cylinders      displacement     horsepower   
+##  Min.   : 9.00   Min.   :3.000   Min.   : 68.0   Min.   : 46.0  
+##  1st Qu.:17.00   1st Qu.:4.000   1st Qu.:105.0   1st Qu.: 75.0  
+##  Median :22.75   Median :4.000   Median :151.0   Median : 93.5  
+##  Mean   :23.45   Mean   :5.472   Mean   :194.4   Mean   :104.5  
+##  3rd Qu.:29.00   3rd Qu.:8.000   3rd Qu.:275.8   3rd Qu.:126.0  
+##  Max.   :46.60   Max.   :8.000   Max.   :455.0   Max.   :230.0  
+##                                                                 
+##      weight      acceleration        year           origin     
+##  Min.   :1613   Min.   : 8.00   Min.   :70.00   Min.   :1.000  
+##  1st Qu.:2225   1st Qu.:13.78   1st Qu.:73.00   1st Qu.:1.000  
+##  Median :2804   Median :15.50   Median :76.00   Median :1.000  
+##  Mean   :2978   Mean   :15.54   Mean   :75.98   Mean   :1.577  
+##  3rd Qu.:3615   3rd Qu.:17.02   3rd Qu.:79.00   3rd Qu.:2.000  
+##  Max.   :5140   Max.   :24.80   Max.   :82.00   Max.   :3.000  
+##                                                                
+##                  name    
+##  amc matador       :  5  
+##  ford pinto        :  5  
+##  toyota corolla    :  5  
+##  amc gremlin       :  4  
+##  amc hornet        :  4  
+##  chevrolet chevette:  4  
+##  (Other)           :365
+</code></pre><pre><code class="lang-r">qualitative_columns &lt;- c(<span class="hljs-number">2</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>)
+
+sapply(Auto[, -qualitative_columns], range)
+</code></pre>
+<pre><code>##       mpg displacement horsepower weight acceleration year
+## [1,]  9.0           68         46   1613          8.0   70
+## [2,] 46.6          455        230   5140         24.8   82
+</code></pre><pre><code class="lang-r">sapply(Auto[, -qualitative_columns], mean)
+</code></pre>
+<pre><code>##          mpg displacement   horsepower       weight acceleration 
+##     23.44592    194.41199    104.46939   2977.58418     15.54133 
+##         year 
+##     75.97959
+</code></pre><pre><code class="lang-r">sapply(Auto[, -qualitative_columns], sd)
+</code></pre>
+<pre><code>##          mpg displacement   horsepower       weight acceleration 
+##     7.805007   104.644004    38.491160   849.402560     2.758864 
+##         year 
+##     3.683737
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># Part (d):</span>
+sapply(Auto[-seq(<span class="hljs-number">10</span>, <span class="hljs-number">85</span>), -qualitative_columns], mean)
+</code></pre>
+<pre><code>##          mpg displacement   horsepower       weight acceleration 
+##     24.40443    187.24051    100.72152   2935.97152     15.72690 
+##         year 
+##     77.14557
+</code></pre><pre><code class="lang-r">pairs(Auto[, -qualitative_columns])
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-2-1.png" alt=""></p>
+<pre><code class="lang-r">plot(Auto$year, Auto$mpg)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-2-2.png" alt=""></p>
+<pre><code class="lang-r"><span class="hljs-comment"># dev.off()</span>
+
+<span class="hljs-comment"># Lets plot some mpg vs. some of our qualitative features: </span>
+plot(as.factor(Auto$cylinders), Auto$mpg)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-2-3.png" alt=""></p>
+<pre><code class="lang-r">plot(as.factor(Auto$origin), Auto$mpg)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-2-4.png" alt=""></p>
+<h3 id="exercise-10">Exercise 10</h3>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(MASS)
+
+all_correlations &lt;- cor(Boston)
+print(all_correlations[, <span class="hljs-number">14</span>])
+</code></pre>
+<pre><code>##       crim         zn      indus       chas        nox         rm 
+## -0.3883046  0.3604453 -0.4837252  0.1752602 -0.4273208  0.6953599 
+##        age        dis        rad        tax    ptratio      black 
+## -0.3769546  0.2499287 -0.3816262 -0.4685359 -0.5077867  0.3334608 
+##      lstat       medv 
+## -0.7376627  1.0000000
+</code></pre><pre><code class="lang-r">cols &lt;- c(<span class="hljs-number">14</span>, <span class="hljs-number">13</span>, <span class="hljs-number">6</span>, <span class="hljs-number">11</span>, <span class="hljs-number">3</span>, <span class="hljs-number">10</span>)
+
+pairs(Boston[, cols])
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-3-1.png" alt=""></p>
+<pre><code class="lang-r"><span class="hljs-comment"># dev.off()</span>
+
+<span class="hljs-comment"># Look how the variable most correlated to crim (turns out to be rad)</span>
+plot(Boston[, <span class="hljs-number">1</span>], Boston[, <span class="hljs-number">9</span>])
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-3-2.png" alt=""></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter2/lab.html" class="navigation navigation-prev " aria-label="Previous page: Lab"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter3/index.html" class="navigation navigation-next " aria-label="Next page: Chapter 3. Linear Regression"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

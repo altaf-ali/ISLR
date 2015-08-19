@@ -1,0 +1,5 @@
+---
+bibliography: ./bibliography/bibliography.bib
+csl: ./bibliography/apa-5th-edition.csl
+suppress-bibliography: yes 
+

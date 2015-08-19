@@ -1,0 +1,975 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Lab | An Introduction to Statistical Learning:</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.2.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../chapter7/solutions.html" />
+    
+    
+    <link rel="prev" href="../chapter7/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="6.1" data-basepath=".." data-revision="Wed Aug 19 2015 19:44:06 GMT+0100 (BST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter2/index.html">
+            
+                
+                    <a href="../chapter2/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Chapter 2. Statistical Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter2/lab.html">
+            
+                
+                    <a href="../chapter2/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter2/solutions.html">
+            
+                
+                    <a href="../chapter2/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter3/index.html">
+            
+                
+                    <a href="../chapter3/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Chapter 3. Linear Regression
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter3/lab.html">
+            
+                
+                    <a href="../chapter3/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter3/solutions.html">
+            
+                
+                    <a href="../chapter3/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter4/index.html">
+            
+                
+                    <a href="../chapter4/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Chapter 4. Classification
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter4/lab.html">
+            
+                
+                    <a href="../chapter4/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter4/solutions.html">
+            
+                
+                    <a href="../chapter4/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="chapter5/index.html">
+            
+                
+                    <a href="../chapter5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Chapter 5. Resampling Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="chapter5/lab.html">
+            
+                
+                    <a href="../chapter5/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="chapter5/solutions.html">
+            
+                
+                    <a href="../chapter5/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chapter6/index.html">
+            
+                
+                    <a href="../chapter6/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chapter 6. Linear Model Selection and Regularization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="chapter6/lab.html">
+            
+                
+                    <a href="../chapter6/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="chapter6/solutions.html">
+            
+                
+                    <a href="../chapter6/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="chapter7/index.html">
+            
+                
+                    <a href="../chapter7/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Chapter 7. Moving Beyond Linearity
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="6.1" data-path="chapter7/lab.html">
+            
+                
+                    <a href="../chapter7/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="chapter7/solutions.html">
+            
+                
+                    <a href="../chapter7/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="chapter8/index.html">
+            
+                
+                    <a href="../chapter8/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Chapter 8. Tree-Based Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="chapter8/lab.html">
+            
+                
+                    <a href="../chapter8/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="chapter8/solutions.html">
+            
+                
+                    <a href="../chapter8/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="chapter9/index.html">
+            
+                
+                    <a href="../chapter9/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Chapter 9. Support Vector Machines
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="chapter9/lab.html">
+            
+                
+                    <a href="../chapter9/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="chapter9/solutions.html">
+            
+                
+                    <a href="../chapter9/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="chapter10/index.html">
+            
+                
+                    <a href="../chapter10/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Chapter 10. Unsupervised Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="chapter10/lab.html">
+            
+                
+                    <a href="../chapter10/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="chapter10/solutions.html">
+            
+                
+                    <a href="../chapter10/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >An Introduction to Statistical Learning:</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="7-8-lab-non-linear-modeling">7.8 Lab: Non-linear Modeling</h2>
+<p>We begin by loading that <code>ISLR</code> package and attaching to the <code>Wage</code> dataset that we will be using throughtout this exercise.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ISLR)
+<span class="hljs-keyword">attach</span>(Wage)
+</code></pre>
+<h3 id="7-8-1-polynomial-regression-and-step-functions">7.8.1 Polynomial Regression and Step Functions</h3>
+<p>Let&apos;s fit a linear model to predict <code>wage</code> with a forth-degree polynomial using the <a href="http://bit.ly/R_poly" target="_blank"><code>poly()</code></a></p>
+<pre><code class="lang-r">fit &lt;- lm(wage ~ poly(age, <span class="hljs-number">4</span>), data = Wage)
+coef(summary(fit))
+</code></pre>
+<pre><code>##                 Estimate Std. Error    t value     Pr(&gt;|t|)
+## (Intercept)    111.70361  0.7287409 153.283015 0.000000e+00
+## poly(age, 4)1  447.06785 39.9147851  11.200558 1.484604e-28
+## poly(age, 4)2 -478.31581 39.9147851 -11.983424 2.355831e-32
+## poly(age, 4)3  125.52169 39.9147851   3.144742 1.678622e-03
+## poly(age, 4)4  -77.91118 39.9147851  -1.951938 5.103865e-02
+</code></pre><p>We can also obtain raw instead of orthogonal polynomials using the <code>raw = TRUE</code> argument to <a href="http://bit.ly/R_poly" target="_blank"><code>poly()</code></a></p>
+<pre><code class="lang-r">fit2 &lt;- lm(wage ~ poly(age, <span class="hljs-number">4</span>, raw = <span class="hljs-literal">T</span>), data = Wage)
+coef(summary(fit2))
+</code></pre>
+<pre><code>##                             Estimate   Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)            -1.841542e+02 6.004038e+01 -3.067172 0.0021802539
+## poly(age, 4, raw = T)1  2.124552e+01 5.886748e+00  3.609042 0.0003123618
+## poly(age, 4, raw = T)2 -5.638593e-01 2.061083e-01 -2.735743 0.0062606446
+## poly(age, 4, raw = T)3  6.810688e-03 3.065931e-03  2.221409 0.0263977518
+## poly(age, 4, raw = T)4 -3.203830e-05 1.641359e-05 -1.951938 0.0510386498
+</code></pre><p>Finally, instead of using <a href="http://bit.ly/R_poly" target="_blank"><code>poly()</code></a>, we can specify the polynomials directly in the formula as shown below.</p>
+<pre><code class="lang-r">fit2a &lt;- lm(wage ~ age + I(age^<span class="hljs-number">2</span>) + I(age^<span class="hljs-number">3</span>) + I(age^<span class="hljs-number">4</span>), data = Wage)
+coef(fit2a)
+</code></pre>
+<pre><code>##   (Intercept)           age      I(age^2)      I(age^3)      I(age^4) 
+## -1.841542e+02  2.124552e+01 -5.638593e-01  6.810688e-03 -3.203830e-05
+</code></pre><p>A more compact version of the same example uses <a href="http://bit.ly/R_cbind" target="_blank"><code>cbind()</code></a> and eliminates the need to wrap each term in <a href="http://bit.ly/R_asis" target="_blank"><code>I()</code></a>.</p>
+<pre><code class="lang-r">fit2b &lt;- lm(wage ~ cbind(age, age^<span class="hljs-number">2</span>, age^<span class="hljs-number">3</span>, age^<span class="hljs-number">4</span>), data = Wage)
+</code></pre>
+<p>We can create an age grid for the targted values of the prediction and pass the grid to <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a>.</p>
+<pre><code class="lang-r">agelims &lt;- range(age)
+age.grid &lt;- seq(from = agelims[<span class="hljs-number">1</span>], to = agelims[<span class="hljs-number">2</span>])
+preds &lt;- predict(fit, newdata = list(age = age.grid), se = <span class="hljs-literal">TRUE</span>)
+se.bands &lt;- cbind(preds$fit + <span class="hljs-number">2</span> * preds$se.fit, preds$fit - <span class="hljs-number">2</span> * preds$se.fit)
+</code></pre>
+<pre><code class="lang-r">preds2 &lt;- predict(fit2, newdata = list(age = age.grid), se = <span class="hljs-literal">TRUE</span>)
+max(abs(preds$fit - preds2$fit))
+</code></pre>
+<pre><code>## [1] 7.81597e-11
+</code></pre><p>We can use <a href="http://bit.ly/R_anova" target="_blank"><code>anova()</code></a> to compare five different models of linear fit.</p>
+<pre><code class="lang-r">fit.1 &lt;- lm(wage ~ age, data = Wage)
+fit.2 &lt;- lm(wage ~ poly(age, <span class="hljs-number">2</span>), data = Wage)
+fit.3 &lt;- lm(wage ~ poly(age, <span class="hljs-number">3</span>), data = Wage)
+fit.4 &lt;- lm(wage ~ poly(age, <span class="hljs-number">4</span>), data = Wage)
+fit.5 &lt;- lm(wage ~ poly(age, <span class="hljs-number">5</span>), data = Wage)
+anova(fit.1, fit.2, fit.3, fit.4, fit.5)
+</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wage ~ age
+## Model 2: wage ~ poly(age, 2)
+## Model 3: wage ~ poly(age, 3)
+## Model 4: wage ~ poly(age, 4)
+## Model 5: wage ~ poly(age, 5)
+##   Res.Df     RSS Df Sum of Sq        F    Pr(&gt;F)    
+## 1   2998 5022216                                    
+## 2   2997 4793430  1    228786 143.5931 &lt; 2.2e-16 ***
+## 3   2996 4777674  1     15756   9.8888  0.001679 ** 
+## 4   2995 4771604  1      6070   3.8098  0.051046 .  
+## 5   2994 4770322  1      1283   0.8050  0.369682    
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+</code></pre><p>The same p-values can also be obtained from the <a href="http://bit.ly/R_coef" target="_blank"><code>coef()</code></a> function.</p>
+<pre><code class="lang-r">coef(summary(fit.5))
+</code></pre>
+<pre><code>##                 Estimate Std. Error     t value     Pr(&gt;|t|)
+## (Intercept)    111.70361  0.7287647 153.2780243 0.000000e+00
+## poly(age, 5)1  447.06785 39.9160847  11.2001930 1.491111e-28
+## poly(age, 5)2 -478.31581 39.9160847 -11.9830341 2.367734e-32
+## poly(age, 5)3  125.52169 39.9160847   3.1446392 1.679213e-03
+## poly(age, 5)4  -77.91118 39.9160847  -1.9518743 5.104623e-02
+## poly(age, 5)5  -35.81289 39.9160847  -0.8972045 3.696820e-01
+</code></pre><p>The <a href="http://bit.ly/R_anova" target="_blank"><code>anova()</code></a> function can also compare the variances when other terms are included as predictors.</p>
+<pre><code class="lang-r">fit.1 &lt;- lm(wage ~ education + age, data = Wage)
+fit.2 &lt;- lm(wage ~ education + poly(age, <span class="hljs-number">2</span>), data = Wage)
+fit.3 &lt;- lm(wage ~ education + poly(age, <span class="hljs-number">3</span>), data = Wage)
+anova(fit.1, fit.2, fit.3)
+</code></pre>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: wage ~ education + age
+## Model 2: wage ~ education + poly(age, 2)
+## Model 3: wage ~ education + poly(age, 3)
+##   Res.Df     RSS Df Sum of Sq        F Pr(&gt;F)    
+## 1   2994 3867992                                 
+## 2   2993 3725395  1    142597 114.6969 &lt;2e-16 ***
+## 3   2992 3719809  1      5587   4.4936 0.0341 *  
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+</code></pre><p>With <a href="http://bit.ly/R_glm" target="_blank"><code>glm()</code></a> we can also fit a polynomial logistic regression.</p>
+<pre><code class="lang-r">fit &lt;- glm(I(wage &gt; <span class="hljs-number">250</span>) ~ poly(age, <span class="hljs-number">4</span>), data = Wage, family = binomial)
+</code></pre>
+<p>And use the same method for making predictions using <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a> as seen above.</p>
+<pre><code class="lang-r">preds &lt;- predict(fit, newdata = list(age = age.grid), se = <span class="hljs-literal">T</span>)
+</code></pre>
+<pre><code class="lang-r">pfit &lt;- exp(preds$fit)/(<span class="hljs-number">1</span> + exp(preds$fit))
+se.bands.logit &lt;- cbind(preds$fit + <span class="hljs-number">2</span> * preds$se.fit, preds$fit - <span class="hljs-number">2</span> * preds$se.fit)
+se.bands &lt;- exp(se.bands.logit)/(<span class="hljs-number">1</span> + exp(se.bands.logit))
+</code></pre>
+<pre><code class="lang-r">preds &lt;- predict(fit, newdata = list(age = age.grid), type = <span class="hljs-string">&quot;response&quot;</span>, se = <span class="hljs-literal">T</span>)
+</code></pre>
+<p>We can plot these results with the <a href="http://bit.ly/R_plot" target="_blank"><code>plot()</code></a> function as usual.</p>
+<pre><code class="lang-r">par(mfrow = c(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>), mar = c(<span class="hljs-number">4.5</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>), oma = c(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">4</span>, <span class="hljs-number">0</span>))
+plot(age, wage, xlim = agelims, cex = <span class="hljs-number">0.5</span>, col = <span class="hljs-string">&quot;darkgrey&quot;</span>)
+title(<span class="hljs-string">&quot;Degree -4 Polynomial &quot;</span>, outer = <span class="hljs-literal">T</span>)
+lines(age.grid, preds$fit, lwd = <span class="hljs-number">2</span>, col = <span class="hljs-string">&quot;blue&quot;</span>)
+matlines(age.grid, se.bands, lwd = <span class="hljs-number">1</span>, col = <span class="hljs-string">&quot;blue&quot;</span>, lty = <span class="hljs-number">3</span>)
+
+plot(age, I(wage &gt; <span class="hljs-number">250</span>), xlim = agelims, type = <span class="hljs-string">&quot;n&quot;</span>, ylim = c(<span class="hljs-number">0</span>, <span class="hljs-number">0.2</span>))
+points(jitter(age), I((wage &gt; <span class="hljs-number">250</span>)/<span class="hljs-number">5</span>), cex = <span class="hljs-number">0.5</span>, pch = <span class="hljs-string">&quot;|&quot;</span>, col = <span class="hljs-string">&quot; darkgrey &quot;</span>)
+lines(age.grid, pfit, lwd = <span class="hljs-number">2</span>, col = <span class="hljs-string">&quot;blue&quot;</span>)
+matlines(age.grid, se.bands, lwd = <span class="hljs-number">1</span>, col = <span class="hljs-string">&quot;blue&quot;</span>, lty = <span class="hljs-number">3</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-15-1.png" alt=""></p>
+<p>In the above plot, the <a href="http://bit.ly/R_jitter" target="_blank"><code>jitter()</code></a> function is used to prevent the same age obervations from overlapping each other.</p>
+<p>The <a href="http://bit.ly/R_cut" target="_blank"><code>cut()</code></a> functions creates cutpoints in the observations, which are then used as predictors for the linear model to fit a step function.</p>
+<pre><code class="lang-r">table(cut(age, <span class="hljs-number">4</span>))
+</code></pre>
+<pre><code>## 
+## (17.9,33.5]   (33.5,49]   (49,64.5] (64.5,80.1] 
+##         750        1399         779          72
+</code></pre><pre><code class="lang-r">fit &lt;- lm(wage ~ cut(age, <span class="hljs-number">4</span>), data = Wage)
+coef(summary(fit))
+</code></pre>
+<pre><code>##                         Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept)            94.158392   1.476069 63.789970 0.000000e+00
+## cut(age, 4)(33.5,49]   24.053491   1.829431 13.148074 1.982315e-38
+## cut(age, 4)(49,64.5]   23.664559   2.067958 11.443444 1.040750e-29
+## cut(age, 4)(64.5,80.1]  7.640592   4.987424  1.531972 1.256350e-01
+</code></pre><h3 id="7-8-2-splines">7.8.2 Splines</h3>
+<p>We use the <code>splines</code> package to run regression splines.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(splines)
+</code></pre>
+<p>We first use <a href="http://bit.ly/R_bs" target="_blank"><code>bs()</code></a> to generate a basis matrix for a polynomial spline and fit a model with knots at age 25, 40 and 60.</p>
+<pre><code class="lang-r">fit &lt;- lm(wage ~ bs(age, knots = c(<span class="hljs-number">25</span>, <span class="hljs-number">40</span>, <span class="hljs-number">60</span>)), data = Wage)
+pred &lt;- predict(fit, newdata = list(age = age.grid), se = <span class="hljs-literal">T</span>)
+plot(age, wage, col = <span class="hljs-string">&quot;gray&quot;</span>)
+lines(age.grid, pred$fit, lwd = <span class="hljs-number">2</span>)
+lines(age.grid, pred$fit + <span class="hljs-number">2</span> * pred$se, lty = <span class="hljs-string">&quot;dashed&quot;</span>)
+lines(age.grid, pred$fit - <span class="hljs-number">2</span> * pred$se, lty = <span class="hljs-string">&quot;dashed&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-18-1.png" alt=""></p>
+<p>Alternatively, the <a href="http://bit.ly/R_dist" target="_blank"><code>df()</code></a> function can be used to produce a spline fit with knots at uniform intervals.</p>
+<pre><code class="lang-r">dim(bs(age, knots = c(<span class="hljs-number">25</span>, <span class="hljs-number">40</span>, <span class="hljs-number">60</span>)))
+</code></pre>
+<pre><code>## [1] 3000    6
+</code></pre><pre><code class="lang-r">dim(bs(age, df = <span class="hljs-number">6</span>))
+</code></pre>
+<pre><code>## [1] 3000    6
+</code></pre><pre><code class="lang-r">attr(bs(age, df = <span class="hljs-number">6</span>), <span class="hljs-string">&quot;knots&quot;</span>)
+</code></pre>
+<pre><code>##   25%   50%   75% 
+## 33.75 42.00 51.00
+</code></pre><pre><code class="lang-r">plot(age, wage, col = <span class="hljs-string">&quot;gray&quot;</span>)
+fit2 &lt;- lm(wage ~ ns(age, df = <span class="hljs-number">4</span>), data = Wage)
+pred2 &lt;- predict(fit2, newdata = list(age = age.grid), se = <span class="hljs-literal">TRUE</span>)
+lines(age.grid, pred2$fit, col = <span class="hljs-string">&quot;red&quot;</span>, lwd = <span class="hljs-number">2</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-20-1.png" alt=""></p>
+<p>We can fit a smoothing spline using <a href="http://bit.ly/R_smooth_spline" target="_blank"><code>smooth.spline()</code></a></p>
+<pre><code class="lang-r">plot(age, wage, xlim = agelims, cex = <span class="hljs-number">0.5</span>, col = <span class="hljs-string">&quot;darkgrey&quot;</span>)
+title(<span class="hljs-string">&quot; Smoothing Spline &quot;</span>)
+fit &lt;- smooth.spline(age, wage, df = <span class="hljs-number">16</span>)
+fit2 &lt;- smooth.spline(age, wage, cv = <span class="hljs-literal">TRUE</span>)
+</code></pre>
+<pre><code>## Warning in smooth.spline(age, wage, cv = TRUE): cross-validation with non-
+## unique &apos;x&apos; values seems doubtful
+</code></pre><pre><code class="lang-r">fit2$df
+</code></pre>
+<pre><code>## [1] 6.794596
+</code></pre><pre><code class="lang-r">lines(fit, col = <span class="hljs-string">&quot;red&quot;</span>, lwd = <span class="hljs-number">2</span>)
+lines(fit2, col = <span class="hljs-string">&quot;blue&quot;</span>, lwd = <span class="hljs-number">2</span>)
+legend(<span class="hljs-string">&quot;topright&quot;</span>, legend = c(<span class="hljs-string">&quot;16 DF&quot;</span>, <span class="hljs-string">&quot;6.8 DF&quot;</span>), col = c(<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>), lty = <span class="hljs-number">1</span>, lwd = <span class="hljs-number">2</span>, cex = <span class="hljs-number">0.8</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-21-1.png" alt=""></p>
+<p>We can use <a href="http://bit.ly/R_loess" target="_blank"><code>loess()</code></a> function for a local polynomial regression.</p>
+<pre><code class="lang-r">plot(age, wage, xlim = agelims, cex = <span class="hljs-number">0.5</span>, col = <span class="hljs-string">&quot;darkgrey&quot;</span>)
+title(<span class="hljs-string">&quot; Local Regression &quot;</span>)
+fit &lt;- loess(wage ~ age, span = <span class="hljs-number">0.2</span>, data = Wage)
+fit2 &lt;- loess(wage ~ age, span = <span class="hljs-number">0.5</span>, data = Wage)
+lines(age.grid, predict(fit, data.frame(age = age.grid)), col = <span class="hljs-string">&quot;red&quot;</span>, lwd = <span class="hljs-number">2</span>)
+lines(age.grid, predict(fit2, data.frame(age = age.grid)), col = <span class="hljs-string">&quot;blue&quot;</span>, lwd = <span class="hljs-number">2</span>)
+legend(<span class="hljs-string">&quot;topright&quot;</span>, legend = c(<span class="hljs-string">&quot;Span=0.2&quot;</span>, <span class="hljs-string">&quot;Span=0.5&quot;</span>), col = c(<span class="hljs-string">&quot;red&quot;</span>, <span class="hljs-string">&quot;blue&quot;</span>), lty = <span class="hljs-number">1</span>, lwd = <span class="hljs-number">2</span>, cex = <span class="hljs-number">0.8</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-22-1.png" alt=""></p>
+<h3 id="7-8-3-gams">7.8.3 GAMs</h3>
+<p>We can fit a GAM with <a href="http://bit.ly/R_lm" target="_blank"><code>lm()</code></a> when an appropriate basis function can used.</p>
+<pre><code class="lang-r">gam1 &lt;- lm(wage ~ ns(year, <span class="hljs-number">4</span>) + ns(age, <span class="hljs-number">5</span>) + education, data = Wage)
+</code></pre>
+<p>However, the <code>gam</code> package offers a general solution to fitting GAMs and is especially useful when splines cannot be easily expressed in terms of basis functions.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(gam)
+</code></pre>
+<pre><code>## Loading required package: foreach
+## Loaded gam 1.12
+</code></pre><pre><code class="lang-r">gam.m3 &lt;- gam(wage ~ s(year, <span class="hljs-number">4</span>) + s(age, <span class="hljs-number">5</span>) + education, data = Wage)
+</code></pre>
+<p>The <a href="http://bit.ly/R_plot" target="_blank"><code>plot()</code></a> function behaves the same way as it does with <a href="http://bit.ly/R_lm" target="_blank"><code>lm()</code></a> and <a href="http://bit.ly/R_glm" target="_blank"><code>glm()</code></a>.</p>
+<pre><code class="lang-r">par(mfrow = c(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>))
+plot(gam.m3, se = <span class="hljs-literal">TRUE</span>, col = <span class="hljs-string">&quot;blue&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-25-1.png" alt=""></p>
+<pre><code class="lang-r">plot.gam(gam1, se = <span class="hljs-literal">TRUE</span>, col = <span class="hljs-string">&quot;red&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-26-1.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-26-2.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-26-3.png" alt=""></p>
+<p>We can use <a href="http://bit.ly/R_anova" target="_blank"><code>anova()</code></a> to find the best performing model.</p>
+<pre><code class="lang-r">gam.m1 &lt;- gam(wage ~ s(age, <span class="hljs-number">5</span>) + education, data = Wage)
+gam.m2 &lt;- gam(wage ~ year + s(age, <span class="hljs-number">5</span>) + education, data = Wage)
+anova(gam.m1, gam.m2, gam.m3, test = <span class="hljs-string">&quot;F&quot;</span>)
+</code></pre>
+<pre><code>## Analysis of Deviance Table
+## 
+## Model 1: wage ~ s(age, 5) + education
+## Model 2: wage ~ year + s(age, 5) + education
+## Model 3: wage ~ s(year, 4) + s(age, 5) + education
+##   Resid. Df Resid. Dev Df Deviance       F    Pr(&gt;F)    
+## 1      2990    3711731                                  
+## 2      2989    3693842  1  17889.2 14.4771 0.0001447 ***
+## 3      2986    3689770  3   4071.1  1.0982 0.3485661    
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+</code></pre><p>And use <a href="http://bit.ly/R_summary" target="_blank"><code>summary()</code></a> to generate a summary of the fitted model.</p>
+<pre><code class="lang-r">summary(gam.m3)
+</code></pre>
+<pre><code>## 
+## Call: gam(formula = wage ~ s(year, 4) + s(age, 5) + education, data = Wage)
+## Deviance Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -119.43  -19.70   -3.33   14.17  213.48 
+## 
+## (Dispersion Parameter for gaussian family taken to be 1235.69)
+## 
+##     Null Deviance: 5222086 on 2999 degrees of freedom
+## Residual Deviance: 3689770 on 2986 degrees of freedom
+## AIC: 29887.75 
+## 
+## Number of Local Scoring Iterations: 2 
+## 
+## Anova for Parametric Effects
+##              Df  Sum Sq Mean Sq F value    Pr(&gt;F)    
+## s(year, 4)    1   27162   27162  21.981 2.877e-06 ***
+## s(age, 5)     1  195338  195338 158.081 &lt; 2.2e-16 ***
+## education     4 1069726  267432 216.423 &lt; 2.2e-16 ***
+## Residuals  2986 3689770    1236                      
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+## 
+## Anova for Nonparametric Effects
+##             Npar Df Npar F  Pr(F)    
+## (Intercept)                          
+## s(year, 4)        3  1.086 0.3537    
+## s(age, 5)         4 32.380 &lt;2e-16 ***
+## education                            
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+</code></pre><p>We can make predictions using <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a> just as we did with linear and logistic regressions.</p>
+<pre><code class="lang-r">preds &lt;- predict(gam.m2, newdata = Wage)
+</code></pre>
+<p>We can use a loess fit as a smoothing term in a GAM formula using the <a href="http://bit.ly/R_gam_lo" target="_blank"><code>lo()</code></a></p>
+<pre><code class="lang-r">gam.lo &lt;- gam(wage ~ s(year, df = <span class="hljs-number">4</span>) + lo(age, span = <span class="hljs-number">0.7</span>) + education, data = Wage)
+plot.gam(gam.lo, se = <span class="hljs-literal">TRUE</span>, col = <span class="hljs-string">&quot;green&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-30-1.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-30-2.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-30-3.png" alt=""></p>
+<pre><code class="lang-r">gam.lo.i &lt;- gam(wage ~ lo(year, age, span = <span class="hljs-number">0.5</span>) + education, data = Wage)
+</code></pre>
+<p>The <code>akima</code> package can be used to plot tw-dimentional surface plots. Make sure the package is part of your R installation or install it with <a href="http://bit.ly/R_install_packages" target="_blank"><code>install.packages()</code></a> if necessary.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(akima)
+plot(gam.lo.i)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-32-1.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-32-2.png" alt=""></p>
+<p>The <a href="http://bit.ly/R_gam" target="_blank"><code>gam()</code></a> function also allows fitting logistic regression GAM with the <code>family = binomial</code> argument.</p>
+<pre><code class="lang-r">gam.lr &lt;- gam(I(wage &gt; <span class="hljs-number">250</span>) ~ year + s(age, df = <span class="hljs-number">5</span>) + education, family = binomial, data = Wage)
+par(mfrow = c(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>))
+plot(gam.lr, se = <span class="hljs-literal">T</span>, col = <span class="hljs-string">&quot;green&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-33-1.png" alt=""></p>
+<pre><code class="lang-r">table(education, I(wage &gt; <span class="hljs-number">250</span>))
+</code></pre>
+<pre><code>##                     
+## education            FALSE TRUE
+##   1. &lt; HS Grad         268    0
+##   2. HS Grad           966    5
+##   3. Some College      643    7
+##   4. College Grad      663   22
+##   5. Advanced Degree   381   45
+</code></pre><pre><code class="lang-r">gam.lr.s &lt;- gam(I(wage &gt; <span class="hljs-number">250</span>) ~ year + s(age, df = <span class="hljs-number">5</span>) + education, family = binomial, data = Wage, subset = (education != <span class="hljs-string">&quot;1. &lt; HS Grad&quot;</span>))
+plot(gam.lr.s, se = <span class="hljs-literal">T</span>, col = <span class="hljs-string">&quot;green&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-35-1.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-35-2.png" alt=""> <img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-35-3.png" alt=""></p>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter7/index.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 7. Moving Beyond Linearity"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter7/solutions.html" class="navigation navigation-next " aria-label="Next page: Solutions"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

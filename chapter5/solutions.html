@@ -1,0 +1,960 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Solutions | An Introduction to Statistical Learning:</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.2.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../chapter6/index.html" />
+    
+    
+    <link rel="prev" href="../chapter5/lab.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="4.2" data-basepath=".." data-revision="Wed Aug 19 2015 19:44:06 GMT+0100 (BST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter2/index.html">
+            
+                
+                    <a href="../chapter2/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Chapter 2. Statistical Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter2/lab.html">
+            
+                
+                    <a href="../chapter2/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter2/solutions.html">
+            
+                
+                    <a href="../chapter2/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter3/index.html">
+            
+                
+                    <a href="../chapter3/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Chapter 3. Linear Regression
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter3/lab.html">
+            
+                
+                    <a href="../chapter3/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter3/solutions.html">
+            
+                
+                    <a href="../chapter3/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter4/index.html">
+            
+                
+                    <a href="../chapter4/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Chapter 4. Classification
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter4/lab.html">
+            
+                
+                    <a href="../chapter4/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter4/solutions.html">
+            
+                
+                    <a href="../chapter4/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="chapter5/index.html">
+            
+                
+                    <a href="../chapter5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Chapter 5. Resampling Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="chapter5/lab.html">
+            
+                
+                    <a href="../chapter5/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="4.2" data-path="chapter5/solutions.html">
+            
+                
+                    <a href="../chapter5/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chapter6/index.html">
+            
+                
+                    <a href="../chapter6/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chapter 6. Linear Model Selection and Regularization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="chapter6/lab.html">
+            
+                
+                    <a href="../chapter6/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="chapter6/solutions.html">
+            
+                
+                    <a href="../chapter6/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="chapter7/index.html">
+            
+                
+                    <a href="../chapter7/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Chapter 7. Moving Beyond Linearity
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="chapter7/lab.html">
+            
+                
+                    <a href="../chapter7/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="chapter7/solutions.html">
+            
+                
+                    <a href="../chapter7/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="chapter8/index.html">
+            
+                
+                    <a href="../chapter8/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Chapter 8. Tree-Based Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="chapter8/lab.html">
+            
+                
+                    <a href="../chapter8/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="chapter8/solutions.html">
+            
+                
+                    <a href="../chapter8/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="chapter9/index.html">
+            
+                
+                    <a href="../chapter9/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Chapter 9. Support Vector Machines
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="chapter9/lab.html">
+            
+                
+                    <a href="../chapter9/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="chapter9/solutions.html">
+            
+                
+                    <a href="../chapter9/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="chapter10/index.html">
+            
+                
+                    <a href="../chapter10/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Chapter 10. Unsupervised Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="chapter10/lab.html">
+            
+                
+                    <a href="../chapter10/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="chapter10/solutions.html">
+            
+                
+                    <a href="../chapter10/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >An Introduction to Statistical Learning:</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="5-4-exercises">5.4 Exercises</h2>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ISLR)
+</code></pre>
+<h3 id="exercise-5">Exercise 5</h3>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(boot)
+
+set.seed(<span class="hljs-number">0</span>)
+Default &lt;- na.omit(Default)
+
+m0 &lt;- glm(default ~ income + balance, data = Default, family = <span class="hljs-string">&quot;binomial&quot;</span>)
+summary(m0)
+</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ income + balance, family = &quot;binomial&quot;, 
+##     data = Default)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4725  -0.1444  -0.0574  -0.0211   3.7245  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.154e+01  4.348e-01 -26.545  &lt; 2e-16 ***
+## income       2.081e-05  4.985e-06   4.174 2.99e-05 ***
+## balance      5.647e-03  2.274e-04  24.836  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2920.6  on 9999  degrees of freedom
+## Residual deviance: 1579.0  on 9997  degrees of freedom
+## AIC: 1585
+## 
+## Number of Fisher Scoring iterations: 8
+</code></pre><pre><code class="lang-r">validation_error_5b &lt;- <span class="hljs-keyword">function</span>() {
+    <span class="hljs-comment"># Predictors are income and balance</span>
+
+    <span class="hljs-comment"># (i):</span>
+    n &lt;- dim(Default)[<span class="hljs-number">1</span>]
+    training_samples &lt;- sample(<span class="hljs-number">1</span>:n, floor(n/<span class="hljs-number">2</span>))
+    validation_samples &lt;- (<span class="hljs-number">1</span>:n)[-training_samples]
+
+    <span class="hljs-comment"># (ii):</span>
+    m &lt;- glm(default ~ income + balance, data = Default, family = <span class="hljs-string">&quot;binomial&quot;</span>, subset = training_samples)
+
+    <span class="hljs-comment"># Results from &apos;predict&apos; are in terms of log odds or the logit tranformation of the probabilities</span>
+    predictions &lt;- predict(m, newdata = Default[validation_samples, ])
+
+    default &lt;- factor(rep(<span class="hljs-string">&quot;No&quot;</span>, length(validation_samples)), c(<span class="hljs-string">&quot;No&quot;</span>, <span class="hljs-string">&quot;Yes&quot;</span>))
+    default[predictions &gt; <span class="hljs-number">0</span>] &lt;- factor(<span class="hljs-string">&quot;Yes&quot;</span>, c(<span class="hljs-string">&quot;No&quot;</span>, <span class="hljs-string">&quot;Yes&quot;</span>))
+
+    validation_error_rate &lt;- mean(default != Default[validation_samples, ]$default)
+}
+
+v_error = validation_error_5b()
+
+v_errors &lt;- rep(<span class="hljs-number">0</span>, <span class="hljs-number">3</span>)
+<span class="hljs-keyword">for</span> (i <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:length(v_errors)) {
+  v_errors[i] = validation_error_5b()
+}
+</code></pre>
+<p>Validation set error is: 0.0268.</p>
+<p>Three more estimates of the validation set error would give: 0.0236, 0.026, 0.0304.</p>
+<pre><code class="lang-r">validation_error_5d &lt;- <span class="hljs-keyword">function</span>() {
+    <span class="hljs-comment"># Predictors are income, balance, AND student</span>
+
+    <span class="hljs-comment"># (i):</span>
+    n &lt;- dim(Default)[<span class="hljs-number">1</span>]
+    training_samples &lt;- sample(<span class="hljs-number">1</span>:n, floor(n/<span class="hljs-number">2</span>))
+    validation_samples &lt;- (<span class="hljs-number">1</span>:n)[-training_samples]
+
+    <span class="hljs-comment"># (ii):</span>
+    m &lt;- glm(default ~ income + balance + student, data = Default, family = <span class="hljs-string">&quot;binomial&quot;</span>, subset = training_samples)
+
+    <span class="hljs-comment"># Results from &apos;predict&apos; are in terms of log odds or the logit tranformation of the probabilities</span>
+    predictions &lt;- predict(m, newdata = Default[validation_samples, ])
+
+    default &lt;- factor(rep(<span class="hljs-string">&quot;No&quot;</span>, length(validation_samples)), c(<span class="hljs-string">&quot;No&quot;</span>, <span class="hljs-string">&quot;Yes&quot;</span>))
+    default[predictions &gt; <span class="hljs-number">0</span>] &lt;- factor(<span class="hljs-string">&quot;Yes&quot;</span>, c(<span class="hljs-string">&quot;No&quot;</span>, <span class="hljs-string">&quot;Yes&quot;</span>))
+
+    validation_error_rate &lt;- mean(default != Default[validation_samples, ]$default)
+}
+
+v_error = validation_error_5d()
+</code></pre>
+<p>Using the predictor <strong>student</strong>, our validation set error is: 0.0272.</p>
+<h3 id="exercise-6">Exercise 6</h3>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">0</span>)
+
+Default &lt;- na.omit(Default)
+
+<span class="hljs-comment"># Estimate the base model (to get standard errors of the coefficients):</span>
+m0 &lt;- glm(default ~ income + balance, data = Default, family = <span class="hljs-string">&quot;binomial&quot;</span>)
+summary(m0)
+</code></pre>
+<pre><code>## 
+## Call:
+## glm(formula = default ~ income + balance, family = &quot;binomial&quot;, 
+##     data = Default)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.4725  -0.1444  -0.0574  -0.0211   3.7245  
+## 
+## Coefficients:
+##               Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept) -1.154e+01  4.348e-01 -26.545  &lt; 2e-16 ***
+## income       2.081e-05  4.985e-06   4.174 2.99e-05 ***
+## balance      5.647e-03  2.274e-04  24.836  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &apos;***&apos; 0.001 &apos;**&apos; 0.01 &apos;*&apos; 0.05 &apos;.&apos; 0.1 &apos; &apos; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 2920.6  on 9999  degrees of freedom
+## Residual deviance: 1579.0  on 9997  degrees of freedom
+## AIC: 1585
+## 
+## Number of Fisher Scoring iterations: 8
+</code></pre><pre><code class="lang-r">boot.fn &lt;- <span class="hljs-keyword">function</span>(data, index) {
+    m &lt;- glm(default ~ income + balance, data = data[index, ], family = <span class="hljs-string">&quot;binomial&quot;</span>)
+    <span class="hljs-keyword">return</span>(coefficients(m))
+}
+boot.fn(Default, <span class="hljs-number">1</span>:<span class="hljs-number">10000</span>)  <span class="hljs-comment"># test our boot function</span>
+</code></pre>
+<pre><code>##   (Intercept)        income       balance 
+## -1.154047e+01  2.080898e-05  5.647103e-03
+</code></pre><pre><code class="lang-r">boot(Default, boot.fn, <span class="hljs-number">1000</span>)
+</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Default, statistic = boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##          original        bias     std. error
+## t1* -1.154047e+01 -3.566749e-02 4.408921e-01
+## t2*  2.080898e-05  2.589821e-07 4.968550e-06
+## t3*  5.647103e-03  1.518670e-05 2.332941e-04
+</code></pre><h3 id="exercise-7">Exercise 7</h3>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">0</span>)
+
+<span class="hljs-comment"># Part (a):</span>
+m_0 &lt;- glm(Direction ~ Lag1 + Lag2, data = Weekly, family = <span class="hljs-string">&quot;binomial&quot;</span>)
+
+<span class="hljs-comment"># Part (b):</span>
+m_loocv &lt;- glm(Direction ~ Lag1 + Lag2, data = Weekly[-<span class="hljs-number">1</span>, ], family = <span class="hljs-string">&quot;binomial&quot;</span>)
+
+weekly_predict = predict(m_loocv, newdata = Weekly[<span class="hljs-number">1</span>, ]) &gt; <span class="hljs-number">0</span>
+weekly_direction = Weekly[<span class="hljs-number">1</span>, ]$Direction
+</code></pre>
+<p>Prediction on first sample is TRUE (1=&gt;Up; 0=&gt;Down)</p>
+<p>First samples true direction is Down</p>
+<pre><code class="lang-r">n &lt;- dim(Weekly)[<span class="hljs-number">1</span>]
+number_of_errors &lt;- <span class="hljs-number">0</span>
+<span class="hljs-keyword">for</span> (ii <span class="hljs-keyword">in</span> <span class="hljs-number">1</span>:n) {
+    m_loocv &lt;- glm(Direction ~ Lag1 + Lag2, data = Weekly[-ii, ], family = <span class="hljs-string">&quot;binomial&quot;</span>)
+
+    error_1 &lt;- (predict(m_loocv, newdata = Weekly[ii, ]) &gt; <span class="hljs-number">0</span>) &amp; (Weekly[ii, ]$Direction == <span class="hljs-string">&quot;Down&quot;</span>)
+    error_2 &lt;- (predict(m_loocv, newdata = Weekly[ii, ]) &lt; <span class="hljs-number">0</span>) &amp; (Weekly[ii, ]$Direction == <span class="hljs-string">&quot;Up&quot;</span>)
+    <span class="hljs-keyword">if</span> (error_1 | error_2) {
+        number_of_errors &lt;- number_of_errors + <span class="hljs-number">1</span>
+    }
+}
+LOOCV_test_error_rate = sprintf(<span class="hljs-string">&quot;%10.6f&quot;</span>, number_of_errors/n)
+</code></pre>
+<p>LOOCV test error rate = 0.449954</p>
+<h3 id="exercise-8">Exercise 8</h3>
+<pre><code class="lang-r"><span class="hljs-comment"># Part (a):</span>
+set.seed(<span class="hljs-number">1</span>)
+
+x &lt;- rnorm(<span class="hljs-number">100</span>)
+y &lt;- x - <span class="hljs-number">2</span> * x^<span class="hljs-number">2</span> + rnorm(<span class="hljs-number">100</span>)
+
+plot(x, y)
+</code></pre>
+<p><img src="solutions_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-7-1.png" alt=""></p>
+<pre><code class="lang-r"><span class="hljs-comment"># dev.off()</span>
+
+DF &lt;- data.frame(y = y, x = x)
+
+<span class="hljs-comment"># Do cross-validation on each model:</span>
+m_i &lt;- glm(y ~ x, data = DF)
+cv.err &lt;- cv.glm(DF, m_i)
+result = sprintf(<span class="hljs-string">&quot;%10.6f&quot;</span>, cv.err$delta[<span class="hljs-number">1</span>])
+</code></pre>
+<p>Model (i): cv output= 7.288162</p>
+<pre><code class="lang-r">m_ii &lt;- glm(y ~ x + I(x^<span class="hljs-number">2</span>), data = DF)
+cv.err &lt;- cv.glm(DF, m_ii)
+result = sprintf(<span class="hljs-string">&quot;%10.6f&quot;</span>, cv.err$delta[<span class="hljs-number">1</span>])
+</code></pre>
+<p>Model (ii): cv output= 0.937424</p>
+<pre><code class="lang-r">m_iii &lt;- glm(y ~ x + I(x^<span class="hljs-number">2</span>) + I(x^<span class="hljs-number">3</span>), data = DF)
+cv.err &lt;- cv.glm(DF, m_iii)
+result = sprintf(<span class="hljs-string">&quot;%10.6f&quot;</span>, cv.err$delta[<span class="hljs-number">1</span>])
+</code></pre>
+<p>Model (iii): cv output= 0.956622</p>
+<pre><code class="lang-r">m_iv &lt;- glm(y ~ x + I(x^<span class="hljs-number">2</span>) + I(x^<span class="hljs-number">3</span>) + I(x^<span class="hljs-number">4</span>), data = DF)
+cv.err &lt;- cv.glm(DF, m_iv)
+result = sprintf(<span class="hljs-string">&quot;%10.6f&quot;</span>, cv.err$delta[<span class="hljs-number">1</span>])
+</code></pre>
+<p>Model (iv): cv output= 0.953905</p>
+<h3 id="exercise-9">Exercise 9</h3>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(MASS)
+
+Boston &lt;- na.omit(Boston)
+
+<span class="hljs-comment"># Part (a):</span>
+mu_hat &lt;- mean(Boston$medv)
+
+<span class="hljs-comment"># Part (b):</span>
+n &lt;- dim(Boston)[<span class="hljs-number">1</span>]
+mu_se &lt;- sd(Boston$medv)/sqrt(n)
+
+mean_boot.fn &lt;- <span class="hljs-keyword">function</span>(data, index) {
+    mean(data[index])
+}
+
+boot(Boston$medv, mean_boot.fn, <span class="hljs-number">1000</span>)
+</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Boston$medv, statistic = mean_boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##     original     bias    std. error
+## t1* 22.53281 0.00975415   0.4130483
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># Part (e):</span>
+median(Boston$medv)
+</code></pre>
+<pre><code>## [1] 21.2
+</code></pre><pre><code class="lang-r">median_boot.fn &lt;- <span class="hljs-keyword">function</span>(data, index) {
+    median(data[index])
+}
+
+boot(Boston$medv, median_boot.fn, <span class="hljs-number">1000</span>)
+</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Boston$medv, statistic = median_boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##     original  bias    std. error
+## t1*     21.2 -0.0127   0.3869347
+</code></pre><pre><code class="lang-r"><span class="hljs-comment"># Part (g):</span>
+quantile(Boston$medv, probs = c(<span class="hljs-number">0.1</span>))
+</code></pre>
+<pre><code>##   10% 
+## 12.75
+</code></pre><pre><code class="lang-r">ten_percent_boot.fn &lt;- <span class="hljs-keyword">function</span>(data, index) {
+    quantile(data[index], probs = c(<span class="hljs-number">0.1</span>))
+}
+
+boot(Boston$medv, ten_percent_boot.fn, <span class="hljs-number">1000</span>)
+</code></pre>
+<pre><code>## 
+## ORDINARY NONPARAMETRIC BOOTSTRAP
+## 
+## 
+## Call:
+## boot(data = Boston$medv, statistic = ten_percent_boot.fn, R = 1000)
+## 
+## 
+## Bootstrap Statistics :
+##     original  bias    std. error
+## t1*    12.75  0.0038   0.5127948
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter5/lab.html" class="navigation navigation-prev " aria-label="Previous page: Lab"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter6/index.html" class="navigation navigation-next " aria-label="Next page: Chapter 6. Linear Model Selection and Regularization"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

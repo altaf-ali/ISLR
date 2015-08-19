@@ -1,0 +1,987 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Lab | An Introduction to Statistical Learning:</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.2.0">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+    
+        <link rel="stylesheet" href="../styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../chapter8/solutions.html" />
+    
+    
+    <link rel="prev" href="../chapter8/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="7.1" data-basepath=".." data-revision="Wed Aug 19 2015 19:44:06 GMT+0100 (BST)">
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Type to search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        
+        
+        
+
+        
+
+        
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="chapter2/index.html">
+            
+                
+                    <a href="../chapter2/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Chapter 2. Statistical Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="chapter2/lab.html">
+            
+                
+                    <a href="../chapter2/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="chapter2/solutions.html">
+            
+                
+                    <a href="../chapter2/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="chapter3/index.html">
+            
+                
+                    <a href="../chapter3/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Chapter 3. Linear Regression
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="chapter3/lab.html">
+            
+                
+                    <a href="../chapter3/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="chapter3/solutions.html">
+            
+                
+                    <a href="../chapter3/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="chapter4/index.html">
+            
+                
+                    <a href="../chapter4/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Chapter 4. Classification
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="chapter4/lab.html">
+            
+                
+                    <a href="../chapter4/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="chapter4/solutions.html">
+            
+                
+                    <a href="../chapter4/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="chapter5/index.html">
+            
+                
+                    <a href="../chapter5/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Chapter 5. Resampling Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="chapter5/lab.html">
+            
+                
+                    <a href="../chapter5/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="chapter5/solutions.html">
+            
+                
+                    <a href="../chapter5/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="chapter6/index.html">
+            
+                
+                    <a href="../chapter6/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Chapter 6. Linear Model Selection and Regularization
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="chapter6/lab.html">
+            
+                
+                    <a href="../chapter6/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="chapter6/solutions.html">
+            
+                
+                    <a href="../chapter6/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="chapter7/index.html">
+            
+                
+                    <a href="../chapter7/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Chapter 7. Moving Beyond Linearity
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="chapter7/lab.html">
+            
+                
+                    <a href="../chapter7/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6.2" data-path="chapter7/solutions.html">
+            
+                
+                    <a href="../chapter7/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="chapter8/index.html">
+            
+                
+                    <a href="../chapter8/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Chapter 8. Tree-Based Methods
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="7.1" data-path="chapter8/lab.html">
+            
+                
+                    <a href="../chapter8/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="chapter8/solutions.html">
+            
+                
+                    <a href="../chapter8/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="chapter9/index.html">
+            
+                
+                    <a href="../chapter9/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Chapter 9. Support Vector Machines
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="chapter9/lab.html">
+            
+                
+                    <a href="../chapter9/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="chapter9/solutions.html">
+            
+                
+                    <a href="../chapter9/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="chapter10/index.html">
+            
+                
+                    <a href="../chapter10/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Chapter 10. Unsupervised Learning
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="chapter10/lab.html">
+            
+                
+                    <a href="../chapter10/lab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                        Lab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="chapter10/solutions.html">
+            
+                
+                    <a href="../chapter10/solutions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        Solutions
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="references.html">
+            
+                
+                    <a href="../references.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        References
+                    </a>
+            
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                Published with GitBook
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Table of Contents"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search" aria-label="Search"><i class="fa fa-search"></i></a>
+    
+    <div id="font-settings-wrapper" class="dropdown pull-left">
+        <a href="#" class="btn toggle-dropdown" aria-label="Font Settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="buttons">
+        <button type="button" id="reduce-font-size" class="button size-2">A</button>
+        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
+    </div>
+
+    <div class="buttons font-family-list">
+        <button type="button" data-font="0" class="button">Serif</button>
+        <button type="button" data-font="1" class="button">Sans</button>
+    </div>
+
+    <div class="buttons color-theme-list">
+        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
+        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
+        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </div>
+
+    <!-- Actions Right -->
+    
+    <div class="dropdown pull-right">
+        <a href="#" class="btn toggle-dropdown" aria-label="Share"><i class="fa fa-share-alt"></i>
+        </a>
+        <div class="dropdown-menu font-settings dropdown-left">
+            <div class="dropdown-caret">
+                <span class="caret-outer"></span>
+                <span class="caret-inner"></span>
+            </div>
+            <div class="buttons">
+                <button type="button" data-sharing="twitter" class="button">
+                    Share on Twitter
+                </button>
+                <button type="button" data-sharing="google-plus" class="button">
+                    Share on Google
+                </button>
+                <button type="button" data-sharing="facebook" class="button">
+                    Share on Facebook
+                </button>
+                <button type="button" data-sharing="weibo" class="button">
+                    Share on Weibo
+                </button>
+                <button type="button" data-sharing="instapaper" class="button">
+                    Share on Instapaper
+                </button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Google"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+    
+
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >An Introduction to Statistical Learning:</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h2 id="8-3-lab-decision-trees">8.3 Lab: Decision Trees</h2>
+<h3 id="8-3-1-fitting-classification-trees">8.3.1 Fitting Classification Trees</h3>
+<p>The <code>tree</code> package provides functionality for classification and regression trees.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(tree)
+</code></pre>
+<p>Load the <code>ISLR</code> package and attach to the <code>Carseats</code> dataset. Then we convert <code>Sales</code> from a contiguous variable to a binary one using <a href="http://bit.ly/R_ifelse" target="_blank"><code>ifelse()</code></a>.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(ISLR)
+<span class="hljs-keyword">attach</span>(Carseats)
+High &lt;- ifelse(Sales &lt;= <span class="hljs-number">8</span>, <span class="hljs-string">&quot;No&quot;</span>, <span class="hljs-string">&quot;Yes&quot;</span>)
+</code></pre>
+<p>We then create a new <code>data.frame</code> by adding the newly created <code>High</code> variable to the <code>Carseats</code> data.</p>
+<pre><code class="lang-r">Carseats &lt;- data.frame(Carseats, High)
+</code></pre>
+<p>We can fit a classification tree using <a href="http://bit.ly/R_tree" target="_blank"><code>tree()</code></a> function.</p>
+<pre><code class="lang-r">tree.carseats &lt;- tree(High ~ . - Sales, Carseats)
+</code></pre>
+<p>We can get a summary of the fitted model.</p>
+<pre><code class="lang-r">summary(tree.carseats)
+</code></pre>
+<pre><code>## 
+## Classification tree:
+## tree(formula = High ~ . - Sales, data = Carseats)
+## Variables actually used in tree construction:
+## [1] &quot;ShelveLoc&quot;   &quot;Price&quot;       &quot;Income&quot;      &quot;CompPrice&quot;   &quot;Population&quot; 
+## [6] &quot;Advertising&quot; &quot;Age&quot;         &quot;US&quot;         
+## Number of terminal nodes:  27 
+## Residual mean deviance:  0.4575 = 170.7 / 373 
+## Misclassification error rate: 0.09 = 36 / 400
+</code></pre><p>And plot the results using the <a href="http://bit.ly/R_plot" target="_blank"><code>plot()</code></a> function.</p>
+<pre><code class="lang-r">plot(tree.carseats)
+text(tree.carseats, pretty = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-6-1.png" alt=""></p>
+<pre><code class="lang-r">tree.carseats
+</code></pre>
+<pre><code>## node), split, n, deviance, yval, (yprob)
+##       * denotes terminal node
+## 
+##   1) root 400 541.500 No ( 0.59000 0.41000 )  
+##     2) ShelveLoc: Bad,Medium 315 390.600 No ( 0.68889 0.31111 )  
+##       4) Price &lt; 92.5 46  56.530 Yes ( 0.30435 0.69565 )  
+##         8) Income &lt; 57 10  12.220 No ( 0.70000 0.30000 )  
+##          16) CompPrice &lt; 110.5 5   0.000 No ( 1.00000 0.00000 ) *
+##          17) CompPrice &gt; 110.5 5   6.730 Yes ( 0.40000 0.60000 ) *
+##         9) Income &gt; 57 36  35.470 Yes ( 0.19444 0.80556 )  
+##          18) Population &lt; 207.5 16  21.170 Yes ( 0.37500 0.62500 ) *
+##          19) Population &gt; 207.5 20   7.941 Yes ( 0.05000 0.95000 ) *
+##       5) Price &gt; 92.5 269 299.800 No ( 0.75465 0.24535 )  
+##        10) Advertising &lt; 13.5 224 213.200 No ( 0.81696 0.18304 )  
+##          20) CompPrice &lt; 124.5 96  44.890 No ( 0.93750 0.06250 )  
+##            40) Price &lt; 106.5 38  33.150 No ( 0.84211 0.15789 )  
+##              80) Population &lt; 177 12  16.300 No ( 0.58333 0.41667 )  
+##               160) Income &lt; 60.5 6   0.000 No ( 1.00000 0.00000 ) *
+##               161) Income &gt; 60.5 6   5.407 Yes ( 0.16667 0.83333 ) *
+##              81) Population &gt; 177 26   8.477 No ( 0.96154 0.03846 ) *
+##            41) Price &gt; 106.5 58   0.000 No ( 1.00000 0.00000 ) *
+##          21) CompPrice &gt; 124.5 128 150.200 No ( 0.72656 0.27344 )  
+##            42) Price &lt; 122.5 51  70.680 Yes ( 0.49020 0.50980 )  
+##              84) ShelveLoc: Bad 11   6.702 No ( 0.90909 0.09091 ) *
+##              85) ShelveLoc: Medium 40  52.930 Yes ( 0.37500 0.62500 )  
+##               170) Price &lt; 109.5 16   7.481 Yes ( 0.06250 0.93750 ) *
+##               171) Price &gt; 109.5 24  32.600 No ( 0.58333 0.41667 )  
+##                 342) Age &lt; 49.5 13  16.050 Yes ( 0.30769 0.69231 ) *
+##                 343) Age &gt; 49.5 11   6.702 No ( 0.90909 0.09091 ) *
+##            43) Price &gt; 122.5 77  55.540 No ( 0.88312 0.11688 )  
+##              86) CompPrice &lt; 147.5 58  17.400 No ( 0.96552 0.03448 ) *
+##              87) CompPrice &gt; 147.5 19  25.010 No ( 0.63158 0.36842 )  
+##               174) Price &lt; 147 12  16.300 Yes ( 0.41667 0.58333 )  
+##                 348) CompPrice &lt; 152.5 7   5.742 Yes ( 0.14286 0.85714 ) *
+##                 349) CompPrice &gt; 152.5 5   5.004 No ( 0.80000 0.20000 ) *
+##               175) Price &gt; 147 7   0.000 No ( 1.00000 0.00000 ) *
+##        11) Advertising &gt; 13.5 45  61.830 Yes ( 0.44444 0.55556 )  
+##          22) Age &lt; 54.5 25  25.020 Yes ( 0.20000 0.80000 )  
+##            44) CompPrice &lt; 130.5 14  18.250 Yes ( 0.35714 0.64286 )  
+##              88) Income &lt; 100 9  12.370 No ( 0.55556 0.44444 ) *
+##              89) Income &gt; 100 5   0.000 Yes ( 0.00000 1.00000 ) *
+##            45) CompPrice &gt; 130.5 11   0.000 Yes ( 0.00000 1.00000 ) *
+##          23) Age &gt; 54.5 20  22.490 No ( 0.75000 0.25000 )  
+##            46) CompPrice &lt; 122.5 10   0.000 No ( 1.00000 0.00000 ) *
+##            47) CompPrice &gt; 122.5 10  13.860 No ( 0.50000 0.50000 )  
+##              94) Price &lt; 125 5   0.000 Yes ( 0.00000 1.00000 ) *
+##              95) Price &gt; 125 5   0.000 No ( 1.00000 0.00000 ) *
+##     3) ShelveLoc: Good 85  90.330 Yes ( 0.22353 0.77647 )  
+##       6) Price &lt; 135 68  49.260 Yes ( 0.11765 0.88235 )  
+##        12) US: No 17  22.070 Yes ( 0.35294 0.64706 )  
+##          24) Price &lt; 109 8   0.000 Yes ( 0.00000 1.00000 ) *
+##          25) Price &gt; 109 9  11.460 No ( 0.66667 0.33333 ) *
+##        13) US: Yes 51  16.880 Yes ( 0.03922 0.96078 ) *
+##       7) Price &gt; 135 17  22.070 No ( 0.64706 0.35294 )  
+##        14) Income &lt; 46 6   0.000 No ( 1.00000 0.00000 ) *
+##        15) Income &gt; 46 11  15.160 Yes ( 0.45455 0.54545 ) *
+</code></pre><p>The <code>Carseats</code> dataset has 400 observations, so let&apos;s split it into a training and test subsets using <a href="http://bit.ly/R_plot" target="_blank"><code>sample()</code></a>.</p>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">2</span>)
+train &lt;- sample(<span class="hljs-number">1</span>:nrow(Carseats), <span class="hljs-number">200</span>)
+Carseats.test &lt;- Carseats[-train, ]
+High.test &lt;- High[-train]
+tree.carseats &lt;- tree(High ~ . - Sales, Carseats, subset = train)
+tree.pred &lt;- predict(tree.carseats, Carseats.test, type = <span class="hljs-string">&quot;class&quot;</span>)
+table(tree.pred, High.test)
+</code></pre>
+<pre><code>##          High.test
+## tree.pred No Yes
+##       No  86  27
+##       Yes 30  57
+</code></pre><pre><code class="lang-r">(<span class="hljs-number">86</span> + <span class="hljs-number">57</span>)/<span class="hljs-number">200</span>
+</code></pre>
+<pre><code>## [1] 0.715
+</code></pre><p>Next we run cross-validation with <a href="http://bit.ly/R_cv_tree" target="_blank"><code>cv.tree()</code></a> to minimize the error rate. The <code>dev</code> (deviance) component in the fitted model holds the error rate at different parameter values for the number of nodes in <code>size</code>.</p>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">3</span>)
+cv.carseats &lt;- cv.tree(tree.carseats, FUN = prune.misclass)
+names(cv.carseats)
+</code></pre>
+<pre><code>## [1] &quot;size&quot;   &quot;dev&quot;    &quot;k&quot;      &quot;method&quot;
+</code></pre><p>Let&apos;s plot the result.</p>
+<pre><code class="lang-r">par(mfrow = c(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))
+plot(cv.carseats$size, cv.carseats$dev, type = <span class="hljs-string">&quot;b&quot;</span>)
+plot(cv.carseats$k, cv.carseats$dev, type = <span class="hljs-string">&quot;b&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-10-1.png" alt=""></p>
+<p>And prune the tree with using the optimum number of nodes obtained from cross-validation above. We can prune the tree with <a href="http://bit.ly/R_prune_tree" target="_blank"><code>prune.misclass()</code></a> which is simply a short-hand for calling <a href="http://bit.ly/R_prune_tree" target="_blank"><code>prune.tree()</code></a> with <code>method = misclass</code>.</p>
+<pre><code class="lang-r">prune.carseats &lt;- prune.misclass(tree.carseats, best = <span class="hljs-number">9</span>)
+plot(prune.carseats)
+text(prune.carseats, pretty = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-11-1.png" alt=""></p>
+<p>Now, we can use <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a> to see how the model performs on test data.</p>
+<pre><code class="lang-r">tree.pred &lt;- predict(prune.carseats, Carseats.test, type = <span class="hljs-string">&quot;class&quot;</span>)
+table(tree.pred, High.test)
+</code></pre>
+<pre><code>##          High.test
+## tree.pred No Yes
+##       No  94  24
+##       Yes 22  60
+</code></pre><pre><code class="lang-r">(<span class="hljs-number">94</span> + <span class="hljs-number">60</span>)/<span class="hljs-number">200</span>
+</code></pre>
+<pre><code>## [1] 0.77
+</code></pre><p>We can see the effects of the number of node on the classification error rate by changing the <code>best</code> argument.</p>
+<pre><code class="lang-r">prune.carseats &lt;- prune.misclass(tree.carseats, best = <span class="hljs-number">15</span>)
+plot(prune.carseats)
+text(prune.carseats, pretty = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-13-1.png" alt=""></p>
+<pre><code class="lang-r">tree.pred &lt;- predict(prune.carseats, Carseats.test, type = <span class="hljs-string">&quot;class&quot;</span>)
+table(tree.pred, High.test)
+</code></pre>
+<pre><code>##          High.test
+## tree.pred No Yes
+##       No  86  22
+##       Yes 30  62
+</code></pre><pre><code class="lang-r">(<span class="hljs-number">86</span> + <span class="hljs-number">62</span>)/<span class="hljs-number">200</span>
+</code></pre>
+<pre><code>## [1] 0.74
+</code></pre><h3 id="8-3-2-fitting-regression-trees">8.3.2 Fitting Regression Trees</h3>
+<p>The <code>tree</code> package also provides functionality to fit regression trees. Let&apos;s load the <code>MASS</code> package and fit a regression tree on the <code>Boston</code> housing values dataset.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(MASS)
+set.seed(<span class="hljs-number">1</span>)
+train &lt;- sample(<span class="hljs-number">1</span>:nrow(Boston), nrow(Boston)/<span class="hljs-number">2</span>)
+tree.boston &lt;- tree(medv ~ ., Boston, subset = train)
+summary(tree.boston)
+</code></pre>
+<pre><code>## 
+## Regression tree:
+## tree(formula = medv ~ ., data = Boston, subset = train)
+## Variables actually used in tree construction:
+## [1] &quot;lstat&quot; &quot;rm&quot;    &quot;dis&quot;  
+## Number of terminal nodes:  8 
+## Residual mean deviance:  12.65 = 3099 / 245 
+## Distribution of residuals:
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -14.10000  -2.04200  -0.05357   0.00000   1.96000  12.60000
+</code></pre><p>Next we plot the results.</p>
+<pre><code class="lang-r">plot(tree.boston)
+text(tree.boston, pretty = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-15-1.png" alt=""></p>
+<p>Just like classification trees, we can run cross-validation on regression trees with the <a href="http://bit.ly/R_cv_tree" target="_blank"><code>cv.tree()</code></a> function.</p>
+<pre><code class="lang-r">cv.boston &lt;- cv.tree(tree.boston)
+plot(cv.boston$size, cv.boston$dev, type = <span class="hljs-string">&quot;b&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-16-1.png" alt=""></p>
+<p>We use <a href="http://bit.ly/R_prune_tree" target="_blank"><code>prune.tree()</code></a> to prune regression trees and plot the results.</p>
+<pre><code class="lang-r">prune.boston &lt;- prune.tree(tree.boston, best = <span class="hljs-number">5</span>)
+plot(prune.boston)
+text(prune.boston, pretty = <span class="hljs-number">0</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-17-1.png" alt=""></p>
+<p>Now we can the check error rate on the test data set uring using <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a> and calculating the mean square error.</p>
+<pre><code class="lang-r">yhat &lt;- predict(tree.boston, newdata = Boston[-train, ])
+boston.test &lt;- Boston[-train, <span class="hljs-string">&quot;medv&quot;</span>]
+plot(yhat, boston.test)
+abline(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-18-1.png" alt=""></p>
+<pre><code class="lang-r">mean((yhat - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 25.04559
+</code></pre><h3 id="8-3-3-bagging-and-random-forests">8.3.3 Bagging and Random Forests</h3>
+<p>We will use the <code>randomForest</code> package to apply bagging and random forest on <code>Boston</code> housing values datasets. Install the package using <a href="http://bit.ly/R_install_packages" target="_blank"><code>install.packages()</code></a> if necessary and load it with the <a href="http://bit.ly/R_library" target="_blank"><code>library()</code></a>.</p>
+<p>We apply bagging the to <code>Boston</code> datasets using the <a href="http://bit.ly/R_random_forest" target="_blank"><code>randomForest()</code></a> function.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(randomForest)
+</code></pre>
+<pre><code>## randomForest 4.6-10
+## Type rfNews() to see new features/changes/bug fixes.
+</code></pre><pre><code class="lang-r">set.seed(<span class="hljs-number">1</span>)
+bag.boston &lt;- randomForest(medv ~ ., data = Boston, subset = train, mtry = <span class="hljs-number">13</span>, importance = <span class="hljs-literal">TRUE</span>)
+bag.boston
+</code></pre>
+<pre><code>## 
+## Call:
+##  randomForest(formula = medv ~ ., data = Boston, mtry = 13, importance = TRUE,      subset = train) 
+##                Type of random forest: regression
+##                      Number of trees: 500
+## No. of variables tried at each split: 13
+## 
+##           Mean of squared residuals: 11.02509
+##                     % Var explained: 86.65
+</code></pre><p>Next, we look at how well the model fits test data.</p>
+<pre><code class="lang-r">yhat.bag &lt;- predict(bag.boston, newdata = Boston[-train, ])
+plot(yhat.bag, boston.test)
+abline(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-20-1.png" alt=""></p>
+<pre><code class="lang-r">mean((yhat.bag - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 13.47349
+</code></pre><p>We can change the number of trees using the <code>ntree</code> argument to the <a href="http://bit.ly/R_random_forest" target="_blank"><code>randomForest()</code></a> function.</p>
+<pre><code class="lang-r">bag.boston &lt;- randomForest(medv ~ ., data = Boston, subset = train, mtry = <span class="hljs-number">13</span>, ntree = <span class="hljs-number">25</span>)
+yhat.bag &lt;- predict(bag.boston, newdata = Boston[-train, ])
+mean((yhat.bag - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 13.43068
+</code></pre><p>We can also change the number of variables sampled as candidates by the random forest algorithm using the <code>mtry</code> argument. We used all 13 variables above, but let&apos;s use <code>mtry = 6</code> now.</p>
+<pre><code class="lang-r">set.seed(<span class="hljs-number">1</span>)
+rf.boston &lt;- randomForest(medv ~ ., data = Boston, subset = train, mtry = <span class="hljs-number">6</span>, importance = <span class="hljs-literal">TRUE</span>)
+yhat.rf &lt;- predict(rf.boston, newdata = Boston[-train, ])
+mean((yhat.rf - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 11.48022
+</code></pre><p>We can look at the variable importance measure using the <a href="http://bit.ly/R_importance" target="_blank"><code>importance()</code></a> function.</p>
+<pre><code class="lang-r">importance(rf.boston)
+</code></pre>
+<pre><code>##           %IncMSE IncNodePurity
+## crim    12.547772    1094.65382
+## zn       1.375489      64.40060
+## indus    9.304258    1086.09103
+## chas     2.518766      76.36804
+## nox     12.835614    1008.73703
+## rm      31.646147    6705.02638
+## age      9.970243     575.13702
+## dis     12.774430    1351.01978
+## rad      3.911852      93.78200
+## tax      7.624043     453.19472
+## ptratio 12.008194     919.06760
+## black    7.376024     358.96935
+## lstat   27.666896    6927.98475
+</code></pre><p>We can plot the variable importance measure for visual inspection using <a href="http://bit.ly/R_var_imp_plot" target="_blank"><code>varImpPlot()</code></a>.</p>
+<pre><code class="lang-r">varImpPlot(rf.boston)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-24-1.png" alt=""></p>
+<h3 id="8-3-4-boosting">8.3.4 Boosting</h3>
+<p>In the final exercise, we look at applying boosting to the same <code>Boston</code> housing values dataset with the <code>gbm</code> package.</p>
+<pre><code class="lang-r"><span class="hljs-keyword">library</span>(gbm)
+</code></pre>
+<pre><code>## Loading required package: survival
+## Loading required package: lattice
+## Loading required package: splines
+## Loading required package: parallel
+## Loaded gbm 2.1.1
+</code></pre><pre><code class="lang-r">set.seed(<span class="hljs-number">1</span>)
+boost.boston &lt;- gbm(medv ~ ., data = Boston[train, ], distribution = <span class="hljs-string">&quot;gaussian&quot;</span>, n.trees = <span class="hljs-number">5000</span>, interaction.depth = <span class="hljs-number">4</span>)
+</code></pre>
+<p>We can use <a href="http://bit.ly/R_summary" target="_blank"><code>summary()</code></a> to display the relative influence for each variable and plot the results.</p>
+<pre><code class="lang-r">summary(boost.boston)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-26-1.png" alt=""></p>
+<pre><code>##             var    rel.inf
+## lstat     lstat 45.9627334
+## rm           rm 31.2238187
+## dis         dis  6.8087398
+## crim       crim  4.0743784
+## nox         nox  2.5605001
+## ptratio ptratio  2.2748652
+## black     black  1.7971159
+## age         age  1.6488532
+## tax         tax  1.3595005
+## indus     indus  1.2705924
+## chas       chas  0.8014323
+## rad         rad  0.2026619
+## zn           zn  0.0148083
+</code></pre><p>Based on the relative influence obtained above, we can plot the marginal effects of the most influential variables using partial dependence plots.</p>
+<pre><code class="lang-r">par(mfrow = c(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>))
+plot(boost.boston, i = <span class="hljs-string">&quot;rm&quot;</span>)
+plot(boost.boston, i = <span class="hljs-string">&quot;lstat&quot;</span>)
+</code></pre>
+<p><img src="lab_files/figure-markdown_github+backtick_code_blocks+autolink_bare_uris/unnamed-chunk-27-1.png" alt=""></p>
+<p>We the use <a href="http://bit.ly/R_predict" target="_blank"><code>predict()</code></a> to see how the model performs on the test data and calculate the mean squared error (MSE).</p>
+<pre><code class="lang-r">yhat.boost &lt;- predict(boost.boston, newdata = Boston[-train, ], n.trees = <span class="hljs-number">5000</span>)
+mean((yhat.boost - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 11.84434
+</code></pre><p>We can alter the shrinkage parameters to the boosting algorithm and compare the MSE to the previous results.</p>
+<pre><code class="lang-r">boost.boston &lt;- gbm(medv ~ ., data = Boston[train, ], distribution = <span class="hljs-string">&quot;gaussian&quot;</span>, n.trees = <span class="hljs-number">5000</span>, interaction.depth = <span class="hljs-number">4</span>, shrinkage = <span class="hljs-number">0.2</span>, verbose = <span class="hljs-literal">F</span>)
+yhat.boost &lt;- predict(boost.boston, newdata = Boston[-train, ], n.trees = <span class="hljs-number">5000</span>)
+mean((yhat.boost - boston.test)^<span class="hljs-number">2</span>)
+</code></pre>
+<pre><code>## [1] 11.51109
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../chapter8/index.html" class="navigation navigation-prev " aria-label="Previous page: Chapter 8. Tree-Based Methods"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../chapter8/solutions.html" class="navigation navigation-next " aria-label="Next page: Solutions"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"fontSettings":{"theme":null,"family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
